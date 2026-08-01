@@ -128,17 +128,6 @@ export default async function ProductDetailPage({ params }: Props) {
               }}
               disabled={!product.isAvailable}
             />
-
-            {product.externalProductUrl ? (
-              <a
-                href={product.externalProductUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-12 items-center justify-center rounded-xl border border-zinc-200 bg-white px-5 text-sm font-medium text-zinc-800 transition hover:bg-zinc-50"
-              >
-                {t("viewOnHerbalife")}
-              </a>
-            ) : null}
           </div>
         </div>
       </div>

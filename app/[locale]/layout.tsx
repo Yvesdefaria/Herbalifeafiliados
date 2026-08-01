@@ -70,7 +70,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <CartProvider>
             <SiteHeader sessionMenu={<SessionMenu />} />
             <main className="flex flex-1 flex-col">{children}</main>
