@@ -2,7 +2,7 @@
 
 > Documento vivo. Marca checkboxes al completar. Tolera cambios de alcance.
 
-**Estado:** scaffold listo · **Siguiente paso:** GitHub remote + cuentas Supabase/Stripe (Fase 1–2)
+**Estado:** Fases 0–5 completadas y verificadas (pago Stripe test end-to-end OK) · **Siguiente paso:** Fase 6 (Panel admin)
 
 ---
 
@@ -431,3 +431,6 @@ Nunca commitear `.env.local`. Mantener `.env.example` actualizado.
 | 2026-08-01 | Fase 3 (Auth) completada: login/registro, roles, admin guard, sesión |
 | 2026-08-01 | Fase 4 (Catálogo) completada: grid, detalle, categorías, búsqueda, seed |
 | 2026-08-01 | Fase 5 (Carrito + checkout) completada: carrito Context+localStorage, badge, checkout, Stripe Checkout, webhook → `paid`, éxito/cancelación |
+| 2026-08-01 | Stripe test verificado end-to-end: keys test en `.env.local`, pago con 4242 en checkout real → webhook `checkout.session.completed` [200] → pedido `paid` con `externalProductUrl`/`external_sku` por línea. CLI Stripe instalado (winget `Stripe.StripeCli`); `stripe listen` reenvía a `localhost:3000/api/webhooks/stripe`. |
+| 2026-08-01 | Fix `proxy.ts`: excluir `/api` del matcher de next-intl (el proxy reescribía `/api/checkout` → `/es/api/checkout` → 404). Commit `97c7818`. |
+| 2026-08-01 | Skills instalados globalmente para opencode (`~/.agents/skills/`): `ui-ux-pro-max`, `webapp-testing`, `find-skills`, `nextjs-developer`, `software-architecture`. `nextjs-developer` de `zenobi-us/dotfiles` ya no existe → se usó `jeffallan/claude-skills@nextjs-developer`. |
