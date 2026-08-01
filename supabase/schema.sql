@@ -9,19 +9,6 @@ create type public.order_status as enum (
   'new', 'paid', 'processing', 'shipped', 'cancelled'
 );
 
--- ---------- Helper: ¿el usuario es admin? ----------
-create or replace function public.is_admin()
-returns boolean
-language sql
-security definer
-set search_path = public
-as $$
-  select exists (
-    select 1 from public.profiles
-    where id = auth.uid() and role = 'admin'
-  );
-$$;
-
 -- ============================================================
 -- PROFILES
 -- ============================================================
@@ -35,6 +22,20 @@ create table if not exists public.profiles (
 );
 
 alter table public.profiles enable row level security;
+
+-- ---------- Helper: ¿el usuario es admin? ----------
+-- Definida tras crear profiles (la referencia en SQL se valida al crearla)
+create or replace function public.is_admin()
+returns boolean
+language sql
+security definer
+set search_path = public
+as $$
+  select exists (
+    select 1 from public.profiles
+    where id = auth.uid() and role = 'admin'
+  );
+$$;
 
 -- trigger: crear profile automáticamente al registrarse
 create or replace function public.handle_new_user()
