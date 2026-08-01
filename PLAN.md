@@ -238,12 +238,12 @@ En MVP: textos de producto/blog en español en la tabla principal. Migrar a trad
 
 | # | Subtarea | Estado |
 |---|----------|--------|
-| 3.1 | Páginas login / registro (email-password) | [ ] |
-| 3.2 | Rol `admin` vs `customer` en Profile | [ ] |
-| 3.3 | Middleware: proteger `/[locale]/admin/*` | [ ] |
-| 3.4 | Header: sesión, login, logout (móvil) | [ ] |
+| 3.1 | Páginas login / registro (email-password) | [x] |
+| 3.2 | Rol `admin` vs `customer` en Profile | [x] |
+| 3.3 | Middleware: proteger `/[locale]/admin/*` | [x] |
+| 3.4 | Header: sesión, login, logout (móvil) | [x] |
 | 3.5 | (Opcional) Google OAuth | [ ] |
-| 3.6 | Perfil básico (nombre, email) | [ ] |
+| 3.6 | Perfil básico (nombre, email) | [x] |
 
 **Checkpoint:** registro → login → logout; no-admin no entra a admin.
 
