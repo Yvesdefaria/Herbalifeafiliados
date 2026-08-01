@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "Herbalife Afiliado",
+    "titleTemplate": "%s | Herbalife Afiliado",
+    "description": "Tienda de nutrición y bienestar. Productos Herbalife de tu afiliado de confianza."
+  },
+  "nav": {
+    "home": "Inicio",
+    "products": "Productos",
+    "blog": "Blog",
+    "cart": "Carrito",
+    "login": "Entrar",
+    "admin": "Admin"
+  },
+  "home": {
+    "badge": "En construcción",
+    "title": "Nutrición y bienestar a tu alcance",
+    "subtitle": "Vitrina de productos Herbalife. Catálogo, pedidos y blog — mobile-first.",
+    "ctaProducts": "Ver productos",
+    "ctaBlog": "Leer blog",
+    "comingSoon": "Pronto: catálogo, carrito y checkout."
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados.",
+    "legal": "Aviso legal",
+    "privacy": "Privacidad",
+    "cookies": "Cookies"
+  },
+  "locale": {
+    "label": "Idioma",
+    "es": "Español",
+    "en": "English",
+    "pt": "Português"
+  }
+}

@@ -1,0 +1,78 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
+import { LocaleSwitcher } from "@/components/LocaleSwitcher";
+
+const links = [
+  { href: "/", key: "home" as const },
+  { href: "/productos", key: "products" as const },
+  { href: "/blog", key: "blog" as const },
+  { href: "/carrito", key: "cart" as const },
+];
+
+export function SiteHeader() {
+  const t = useTranslations("nav");
+  const pathname = usePathname();
+
+  return (
+    <header className="sticky top-0 z-40 border-b border-zinc-200/80 bg-white/95 backdrop-blur">
+      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-3 px-4 sm:h-16 sm:px-6">
+        <Link
+          href="/"
+          className="shrink-0 text-sm font-semibold tracking-tight text-emerald-800 sm:text-base"
+        >
+          Herbalife Afiliado
+        </Link>
+        <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
+          {links.map((link) => {
+            const active = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
+                  active
+                    ? "bg-emerald-50 text-emerald-900"
+                    : "text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900"
+                }`}
+              >
+                {t(link.key)}
+              </Link>
+            );
+          })}
+        </nav>
+        <div className="flex items-center gap-2">
+          <LocaleSwitcher />
+          <Link
+            href="/carrito"
+            className="inline-flex h-10 items-center rounded-lg bg-emerald-700 px-3 text-sm font-medium text-white md:hidden"
+          >
+            {t("cart")}
+          </Link>
+        </div>
+      </div>
+      <nav
+        className="flex gap-1 overflow-x-auto border-t border-zinc-100 px-2 py-2 md:hidden"
+        aria-label="Mobile"
+      >
+        {links.map((link) => {
+          const active = pathname === link.href;
+          return (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-medium ${
+                active
+                  ? "bg-emerald-700 text-white"
+                  : "bg-zinc-100 text-zinc-700"
+              }`}
+            >
+              {t(link.key)}
+            </Link>
+          );
+        })}
+      </nav>
+    </header>
+  );
+}

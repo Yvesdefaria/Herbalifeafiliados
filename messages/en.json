@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "Herbalife Affiliate",
+    "titleTemplate": "%s | Herbalife Affiliate",
+    "description": "Nutrition and wellness store. Herbalife products from your trusted affiliate."
+  },
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "blog": "Blog",
+    "cart": "Cart",
+    "login": "Sign in",
+    "admin": "Admin"
+  },
+  "home": {
+    "badge": "Under construction",
+    "title": "Nutrition and wellness within reach",
+    "subtitle": "Herbalife product showcase. Catalog, orders and blog — mobile-first.",
+    "ctaProducts": "View products",
+    "ctaBlog": "Read blog",
+    "comingSoon": "Coming soon: catalog, cart and checkout."
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "legal": "Legal notice",
+    "privacy": "Privacy",
+    "cookies": "Cookies"
+  },
+  "locale": {
+    "label": "Language",
+    "es": "Español",
+    "en": "English",
+    "pt": "Português"
+  }
+}
