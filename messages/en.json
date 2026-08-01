@@ -35,13 +35,28 @@
     "orders": "Orders",
     "blog": "Blog"
   },
+  "catalog": {
+    "title": "Products",
+    "search": "Search",
+    "searchPlaceholder": "Search products...",
+    "categories": "Categories",
+    "all": "All",
+    "resultsCount": "{count, plural, one {# product} other {# products}}",
+    "empty": "No products match your search.",
+    "soldOut": "Sold out",
+    "backToProducts": "Back to products",
+    "addToCart": "Add to cart",
+    "viewOnHerbalife": "View on Herbalife"
+  },
   "home": {
     "badge": "Under construction",
     "title": "Nutrition and wellness within reach",
     "subtitle": "Herbalife product showcase. Catalog, orders and blog — mobile-first.",
     "ctaProducts": "View products",
     "ctaBlog": "Read blog",
-    "comingSoon": "Coming soon: catalog, cart and checkout."
+    "comingSoon": "Coming soon: catalog, cart and checkout.",
+    "featured": "Featured",
+    "seeAll": "See all"
   },
   "footer": {
     "rights": "All rights reserved.",

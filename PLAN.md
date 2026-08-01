@@ -253,14 +253,14 @@ En MVP: textos de producto/blog en español en la tabla principal. Migrar a trad
 
 | # | Subtarea | Estado |
 |---|----------|--------|
-| 4.1 | Listado `/[locale]/productos` grid táctil | [ ] |
-| 4.2 | Detalle `/[locale]/producto/[slug]` + CTA carrito | [ ] |
-| 4.3 | Categorías + búsqueda simple (query en URL) | [ ] |
-| 4.4 | `next/image` optimizado | [ ] |
-| 4.5 | `generateMetadata` por producto (SEO) | [ ] |
-| 4.6 | Home: destacados + CTA catálogo | [ ] |
-| 4.7 | (Opcional) botón “ver en Herbalife” con `externalProductUrl` | [ ] |
-| 4.8 | Todas las rutas públicas bajo `[locale]` | [ ] |
+| 4.1 | Listado `/[locale]/productos` grid táctil | [x] |
+| 4.2 | Detalle `/[locale]/producto/[slug]` + CTA carrito | [x] |
+| 4.3 | Categorías + búsqueda simple (query en URL) | [x] |
+| 4.4 | `next/image` optimizado | [x] |
+| 4.5 | `generateMetadata` por producto (SEO) | [x] |
+| 4.6 | Home: destacados + CTA catálogo | [x] |
+| 4.7 | (Opcional) botón “ver en Herbalife” con `externalProductUrl` | [x] |
+| 4.8 | Todas las rutas públicas bajo `[locale]` | [x] |
 
 **Checkpoint:** navegar catálogo en móvil sin login.
 

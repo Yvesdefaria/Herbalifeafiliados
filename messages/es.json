@@ -35,13 +35,28 @@
     "orders": "Pedidos",
     "blog": "Blog"
   },
+  "catalog": {
+    "title": "Productos",
+    "search": "Buscar",
+    "searchPlaceholder": "Buscar producto...",
+    "categories": "Categorías",
+    "all": "Todos",
+    "resultsCount": "{count, plural, one {# producto} other {# productos}}",
+    "empty": "No hay productos que coincidan con tu búsqueda.",
+    "soldOut": "Agotado",
+    "backToProducts": "Volver a productos",
+    "addToCart": "Añadir al carrito",
+    "viewOnHerbalife": "Ver en Herbalife"
+  },
   "home": {
     "badge": "En construcción",
     "title": "Nutrición y bienestar a tu alcance",
     "subtitle": "Vitrina de productos Herbalife. Catálogo, pedidos y blog — mobile-first.",
     "ctaProducts": "Ver productos",
     "ctaBlog": "Leer blog",
-    "comingSoon": "Pronto: catálogo, carrito y checkout."
+    "comingSoon": "Pronto: catálogo, carrito y checkout.",
+    "featured": "Destacados",
+    "seeAll": "Ver todos"
   },
   "footer": {
     "rights": "Todos los derechos reservados.",
