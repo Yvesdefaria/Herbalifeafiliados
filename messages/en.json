@@ -46,7 +46,47 @@
     "soldOut": "Sold out",
     "backToProducts": "Back to products",
     "addToCart": "Add to cart",
+    "added": "Added",
     "viewOnHerbalife": "View on Herbalife"
+  },
+  "cart": {
+    "title": "Cart",
+    "loading": "Loading...",
+    "empty": "Your cart is empty.",
+    "browse": "View products",
+    "total": "Total",
+    "checkout": "Checkout",
+    "remove": "Remove",
+    "decrease": "Decrease quantity",
+    "increase": "Increase quantity"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "summary": "Order summary",
+    "items": "{count, plural, one {# item} other {# items}}",
+    "total": "Total",
+    "submit": "Pay with card",
+    "submitting": "Redirecting to payment...",
+    "empty": "There are no items to checkout.",
+    "browse": "View products",
+    "note": "Payment is securely handled by Stripe. After confirming, you will receive an email with the order details.",
+    "contact": "Contact details",
+    "name": "Full name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Shipping address",
+    "error": "We could not start the payment. Please try again."
+  },
+  "success": {
+    "title": "Order confirmed",
+    "message": "Thank you for your order. We have received your payment and will contact you to arrange delivery.",
+    "backHome": "Back to home",
+    "viewProducts": "Continue shopping"
+  },
+  "cancel": {
+    "title": "Order cancelled",
+    "message": "No charge was made. You can try again whenever you want.",
+    "backCart": "Back to cart"
   },
   "home": {
     "badge": "Under construction",

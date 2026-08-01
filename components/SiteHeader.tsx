@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
+import { CartButton } from "@/components/cart/CartButton";
 
 const links = [
   { href: "/", key: "home" as const },
@@ -48,13 +49,13 @@ export function SiteHeader({ sessionMenu }: Props) {
         </nav>
         <div className="flex items-center gap-2">
           <LocaleSwitcher />
-          <Link
-            href="/carrito"
-            className="inline-flex h-10 items-center rounded-lg bg-emerald-700 px-3 text-sm font-medium text-white md:hidden"
-          >
-            {t("cart")}
-          </Link>
-          <div className="hidden md:block">{sessionMenu}</div>
+          <div className="md:hidden">
+            <CartButton />
+          </div>
+          <div className="hidden items-center gap-2 md:flex">
+            <CartButton />
+            {sessionMenu}
+          </div>
         </div>
       </div>
       <nav

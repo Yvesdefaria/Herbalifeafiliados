@@ -270,15 +270,15 @@ En MVP: textos de producto/blog en español en la tabla principal. Migrar a trad
 
 | # | Subtarea | Estado |
 |---|----------|--------|
-| 5.1 | Estado carrito (Context o Zustand) + localStorage | [ ] |
-| 5.2 | Página carrito: líneas, qty, total EUR | [ ] |
-| 5.3 | Badge cantidad en header | [ ] |
-| 5.4 | Checkout: nombre, tel, email, dirección ES | [ ] |
-| 5.5 | Crear `Order` + `OrderItem` (snapshots + externalProductUrl) status `new` | [ ] |
-| 5.6 | `ManualHerbalifeProvider`: notificar afiliado (email/Resend o solo panel admin) | [ ] |
-| 5.7 | Stripe Checkout + webhook → `paid` (si se eligió pago online) | [ ] |
-| 5.8 | Páginas éxito / cancelación | [ ] |
-| 5.9 | **No** restar stock | [ ] |
+| 5.1 | Estado carrito (Context o Zustand) + localStorage | [x] |
+| 5.2 | Página carrito: líneas, qty, total EUR | [x] |
+| 5.3 | Badge cantidad en header | [x] |
+| 5.4 | Checkout: nombre, tel, email, dirección ES | [x] |
+| 5.5 | Crear `Order` + `OrderItem` (snapshots + externalProductUrl) status `new` | [x] |
+| 5.6 | `ManualHerbalifeProvider`: notificar afiliado (email/Resend o solo panel admin) | [x] |
+| 5.7 | Stripe Checkout + webhook → `paid` (si se eligió pago online) | [x] |
+| 5.8 | Páginas éxito / cancelación | [x] |
+| 5.9 | **No** restar stock | [x] |
 
 **Checkpoint:** pedido test visible en admin con URLs de producto por línea.
 
@@ -430,3 +430,4 @@ Nunca commitear `.env.local`. Mantener `.env.example` actualizado.
 | 2026-08-01 | Context7 verificado (0.7); Prisma 7 + Supabase conectados; `DATABASE_URL` → pooler IPv4 |
 | 2026-08-01 | Fase 3 (Auth) completada: login/registro, roles, admin guard, sesión |
 | 2026-08-01 | Fase 4 (Catálogo) completada: grid, detalle, categorías, búsqueda, seed |
+| 2026-08-01 | Fase 5 (Carrito + checkout) completada: carrito Context+localStorage, badge, checkout, Stripe Checkout, webhook → `paid`, éxito/cancelación |

@@ -5,6 +5,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getProductBySlug } from "@/lib/catalog/queries";
 import { formatPrice } from "@/lib/format";
 import { Link } from "@/i18n/navigation";
+import { AddToCartButton } from "@/components/catalog/AddToCartButton";
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
@@ -115,13 +116,18 @@ export default async function ProductDetailPage({ params }: Props) {
           ) : null}
 
           <div className="mt-6 flex flex-col gap-3">
-            <button
-              type="button"
-              disabled
-              className="inline-flex h-12 items-center justify-center rounded-xl bg-emerald-700 px-5 text-sm font-medium text-white opacity-70"
-            >
-              {t("addToCart")}
-            </button>
+            <AddToCartButton
+              product={{
+                productId: product.id,
+                slug: product.slug,
+                name: product.name,
+                priceCents: product.priceCents,
+                currency: product.currency,
+                imageUrl: product.imageUrl,
+                externalProductUrl: product.externalProductUrl,
+              }}
+              disabled={!product.isAvailable}
+            />
 
             {product.externalProductUrl ? (
               <a

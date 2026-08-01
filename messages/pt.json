@@ -46,7 +46,47 @@
     "soldOut": "Esgotado",
     "backToProducts": "Voltar aos produtos",
     "addToCart": "Adicionar ao carrinho",
+    "added": "Adicionado",
     "viewOnHerbalife": "Ver na Herbalife"
+  },
+  "cart": {
+    "title": "Carrinho",
+    "loading": "Carregando...",
+    "empty": "Seu carrinho está vazio.",
+    "browse": "Ver produtos",
+    "total": "Total",
+    "checkout": "Finalizar pedido",
+    "remove": "Remover",
+    "decrease": "Diminuir quantidade",
+    "increase": "Aumentar quantidade"
+  },
+  "checkout": {
+    "title": "Finalizar pedido",
+    "summary": "Resumo do pedido",
+    "items": "{count, plural, one {# item} other {# itens}}",
+    "total": "Total",
+    "submit": "Pagar com cartão",
+    "submitting": "Redirecionando para o pagamento...",
+    "empty": "Não há itens para finalizar.",
+    "browse": "Ver produtos",
+    "note": "O pagamento é processado com segurança pela Stripe. Após confirmar, você receberá um e-mail com os detalhes do pedido.",
+    "contact": "Dados de contato",
+    "name": "Nome completo",
+    "email": "Email",
+    "phone": "Telefone",
+    "address": "Endereço de entrega",
+    "error": "Não foi possível iniciar o pagamento. Tente novamente."
+  },
+  "success": {
+    "title": "Pedido confirmado",
+    "message": "Obrigado pelo seu pedido. Recebemos o pagamento e entraremos em contato para combinar a entrega.",
+    "backHome": "Voltar ao início",
+    "viewProducts": "Continuar comprando"
+  },
+  "cancel": {
+    "title": "Pedido cancelado",
+    "message": "Nenhuma cobrança foi feita. Você pode tentar novamente quando quiser.",
+    "backCart": "Voltar ao carrinho"
   },
   "home": {
     "badge": "Em construção",
