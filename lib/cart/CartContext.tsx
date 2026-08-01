@@ -59,12 +59,14 @@ function subscribe(listener: () => void) {
   };
 }
 
+const EMPTY_CART: CartItem[] = [];
+
 function getSnapshot(): CartItem[] {
   return items;
 }
 
 function getServerSnapshot(): CartItem[] {
-  return [];
+  return EMPTY_CART;
 }
 
 if (typeof window !== "undefined") {
