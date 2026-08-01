@@ -8,6 +8,11 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 Instrucciones para agentes de IA que trabajen en este repositorio. Leer junto con `PLAN.md`.
 
+## Trato con el usuario
+
+- Dirigirse al usuario por su nombre en cada mensaje, comenzando con "Yves" (p.ej. "Yves, aquí está...", "Yves, ya ha sido creado...", "Yves, ahora el orden es...").
+
+
 ---
 
 ## Qué es este proyecto
@@ -138,7 +143,7 @@ prisma/           # schema y migraciones (pendiente)
 
 ## Regla de commits
 
-- Hacer un **commit por cada bloque lógico** de trabajo completado.
+- Hacer un **commit por cada bloque lógico** de trabajo completado, **inmediatamente** al terminar el bloque y antes de pasar a la siguiente tarea. No acumular trabajo pendiente de commitear.
 - Mensajes en español o inglés, descriptivos, con prefijo de tipo: `feat:`, `fix:`, `chore:`, `docs:`, `refactor:`.
 - Antes de commitear, revisar `git status` y `git diff` para no incluir archivos no deseados (nunca `.env.local` ni claves).
 - No mezclar cambios no relacionados en el mismo commit.
