@@ -10,7 +10,30 @@
     "blog": "Blog",
     "cart": "Cart",
     "login": "Sign in",
+    "logout": "Sign out",
     "admin": "Admin"
+  },
+  "auth": {
+    "login": "Sign in",
+    "signup": "Create account",
+    "logout": "Sign out",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "submitting": "Processing...",
+    "welcomeBack": "Sign in to your account to continue.",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "createAccount": "Create an account to place orders.",
+    "registeredOk": "Account created. You can now sign in.",
+    "myAccount": "My account"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "dashboardSubtitle": "Your store overview.",
+    "products": "Products",
+    "orders": "Orders",
+    "blog": "Blog"
   },
   "home": {
     "badge": "Under construction",

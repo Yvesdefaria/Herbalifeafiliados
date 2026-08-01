@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
@@ -8,10 +9,13 @@ const links = [
   { href: "/", key: "home" as const },
   { href: "/productos", key: "products" as const },
   { href: "/blog", key: "blog" as const },
-  { href: "/carrito", key: "cart" as const },
 ];
 
-export function SiteHeader() {
+type Props = {
+  sessionMenu: ReactNode;
+};
+
+export function SiteHeader({ sessionMenu }: Props) {
   const t = useTranslations("nav");
   const pathname = usePathname();
 
@@ -50,6 +54,7 @@ export function SiteHeader() {
           >
             {t("cart")}
           </Link>
+          <div className="hidden md:block">{sessionMenu}</div>
         </div>
       </div>
       <nav

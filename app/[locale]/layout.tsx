@@ -6,6 +6,7 @@ import { getMessages, getTranslations, setRequestLocale } from "next-intl/server
 import { routing } from "@/i18n/routing";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SessionMenu } from "@/components/auth/SessionMenu";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -69,7 +70,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <NextIntlClientProvider messages={messages}>
-          <SiteHeader />
+          <SiteHeader sessionMenu={<SessionMenu />} />
           <main className="flex flex-1 flex-col">{children}</main>
           <SiteFooter />
         </NextIntlClientProvider>

@@ -134,7 +134,15 @@ prisma/           # schema y migraciones (pendiente)
 2. Si tocas librerías externas → context7.
 3. Implementar el cambio mínimo que cumpla la subtarea.
 4. Verificar con lint/build si existen scripts.
-5. No hacer deploy ni commits a menos que el usuario lo pida.
+5. **Commit por bloque**: tras completar cada bloque de trabajo coherente (ej. una fase o subtarea de `PLAN.md`), hacer un commit con mensaje descriptivo y push cuando el usuario lo indique. No esperar al final del día para commitear.
+
+## Regla de commits
+
+- Hacer un **commit por cada bloque lógico** de trabajo completado.
+- Mensajes en español o inglés, descriptivos, con prefijo de tipo: `feat:`, `fix:`, `chore:`, `docs:`, `refactor:`.
+- Antes de commitear, revisar `git status` y `git diff` para no incluir archivos no deseados (nunca `.env.local` ni claves).
+- No mezclar cambios no relacionados en el mismo commit.
+- No hacer deploy ni push sin que el usuario lo pida (el commit sí, siempre tras completar el bloque).
 
 ---
 

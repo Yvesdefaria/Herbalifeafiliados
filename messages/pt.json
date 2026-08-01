@@ -10,7 +10,30 @@
     "blog": "Blog",
     "cart": "Carrinho",
     "login": "Entrar",
+    "logout": "Sair",
     "admin": "Admin"
+  },
+  "auth": {
+    "login": "Entrar",
+    "signup": "Criar conta",
+    "logout": "Sair",
+    "email": "Email",
+    "password": "Senha",
+    "name": "Nome",
+    "submitting": "Processando...",
+    "welcomeBack": "Acesse sua conta para continuar.",
+    "noAccount": "Não tem conta?",
+    "hasAccount": "Já tem conta?",
+    "createAccount": "Crie uma conta para fazer pedidos.",
+    "registeredOk": "Conta criada. Agora você pode entrar.",
+    "myAccount": "Minha conta"
+  },
+  "admin": {
+    "dashboard": "Painel",
+    "dashboardSubtitle": "Visão geral da sua loja.",
+    "products": "Produtos",
+    "orders": "Pedidos",
+    "blog": "Blog"
   },
   "home": {
     "badge": "Em construção",
