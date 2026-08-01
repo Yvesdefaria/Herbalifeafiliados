@@ -427,3 +427,6 @@ Nunca commitear `.env.local`. Mantener `.env.example` actualizado.
 | 2026-07-30 | Fase 0: Context7 + AGENTS.md a nivel proyecto |
 | 2026-07-30 | i18n next-intl (es/en/pt) desde setup |
 | 2026-07-30 | Generado `PLAN.md` |
+| 2026-08-01 | Context7 verificado (0.7); Prisma 7 + Supabase conectados; `DATABASE_URL` → pooler IPv4 |
+| 2026-08-01 | Fase 3 (Auth) completada: login/registro, roles, admin guard, sesión |
+| 2026-08-01 | Fase 4 (Catálogo) completada: grid, detalle, categorías, búsqueda, seed |
