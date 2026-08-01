@@ -217,9 +217,9 @@ En MVP: textos de producto/blog en español en la tabla principal. Migrar a trad
 |---|----------|--------|
 | 2.1 | `create-next-app` (TS, Tailwind, App Router, ESLint) | [x] |
 | 2.2 | Carpetas `app`, `components`, `lib`, `types`, `docs` | [x] |
-| 2.3 | Proyecto Supabase + `.env.local` + `.env.example` | [ ] parcial: `.env.example` listo |
-| 2.4 | Clientes Supabase (browser/server) + Auth base | [ ] |
-| 2.5 | Schema Prisma/SQL: Profile, Category, Product (+ externalProductUrl), Order, OrderItem, BlogPost | [ ] |
+| 2.3 | Proyecto Supabase + `.env.local` + `.env.example` | [x] |
+| 2.4 | Clientes Supabase (browser/server) + Auth base | [x] |
+| 2.5 | Schema Prisma/SQL: Profile, Category, Product (+ externalProductUrl), Order, OrderItem, BlogPost | [x] |
 | 2.6 | Layout mobile-first (header, nav, footer) usable a 375px | [x] |
 | 2.7 | Metadata base SEO (`lang`, title template, Open Graph) | [x] base |
 | 2.8 | Instalar y configurar `next-intl` + middleware | [x] |
