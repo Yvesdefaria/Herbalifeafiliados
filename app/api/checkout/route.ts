@@ -11,6 +11,7 @@ type CheckoutRequest = {
     phone?: string;
     address?: string;
   };
+  locale?: string;
 };
 
 export async function POST(req: Request) {
@@ -117,6 +118,8 @@ export async function POST(req: Request) {
   });
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const locale =
+    body.locale === "en" || body.locale === "pt" ? body.locale : "es";
 
   const stripe = getStripe();
   const session = await stripe.checkout.sessions.create({
@@ -124,8 +127,8 @@ export async function POST(req: Request) {
     customer_email: email,
     line_items: lineItems,
     metadata: { order_id: order.id },
-    success_url: `${siteUrl}/es/pago/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${siteUrl}/es/pago/cancel`,
+    success_url: `${siteUrl}/${locale}/pago/success?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${siteUrl}/${locale}/pago/cancel`,
   });
 
   return NextResponse.json({ url: session.url });

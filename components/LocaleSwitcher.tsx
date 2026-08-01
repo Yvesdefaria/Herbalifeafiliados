@@ -1,17 +1,25 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { usePathname, useRouter } from "@/i18n/navigation";
+import { usePathname, getPathname } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 
 export function LocaleSwitcher() {
   const t = useTranslations("locale");
   const locale = useLocale();
   const pathname = usePathname();
-  const router = useRouter();
 
   function onChange(next: string) {
-    router.replace(pathname, { locale: next as Locale });
+    if (next === locale) {
+      return;
+    }
+    const nextPath = getPathname({
+      locale: next as Locale,
+      href: pathname,
+    });
+    const search =
+      typeof window !== "undefined" ? window.location.search : "";
+    window.location.assign(`${nextPath}${search}`);
   }
 
   return (

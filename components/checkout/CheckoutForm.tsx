@@ -2,13 +2,14 @@
 
 import { useState, type FormEvent } from "react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useCart } from "@/lib/cart/CartContext";
 import { formatPrice } from "@/lib/format";
 import { Link } from "@/i18n/navigation";
 
 export function CheckoutForm() {
   const t = useTranslations("checkout");
+  const locale = useLocale();
   const { items, totalCents } = useCart();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -32,6 +33,7 @@ export function CheckoutForm() {
         body: JSON.stringify({
           items,
           customer: { name, email, phone, address },
+          locale,
         }),
       });
       const data = await res.json();
