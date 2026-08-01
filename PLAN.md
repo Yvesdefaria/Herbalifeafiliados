@@ -2,7 +2,7 @@
 
 > Documento vivo. Marca checkboxes al completar. Tolera cambios de alcance.
 
-**Estado:** Fases 0–5 completadas y verificadas (pago Stripe test end-to-end OK) · **Siguiente paso:** Fase 6 (Panel admin)
+**Estado:** Fases 0–6 completadas y verificadas (pago Stripe test end-to-end OK; panel admin funcional) · **Siguiente paso:** Fase 7 (Blog público)
 
 ---
 
@@ -288,14 +288,14 @@ En MVP: textos de producto/blog en español en la tabla principal. Migrar a trad
 
 | # | Subtarea | Estado |
 |---|----------|--------|
-| 6.1 | Layout `/[locale]/admin` (sidebar/drawer móvil) + auth guard | [ ] |
-| 6.2 | Dashboard básico (nº pedidos, recientes) | [ ] |
-| 6.3 | CRUD productos **con campo URL producto Herbalife** | [ ] |
-| 6.4 | Subida imágenes a Supabase Storage | [ ] |
-| 6.5 | CRUD categorías | [ ] |
-| 6.6 | Lista/detalle pedidos + cambio de estado | [ ] |
-| 6.7 | En detalle pedido: abrir `externalProductUrl` por línea | [ ] |
-| 6.8 | CRUD blog (draft/publish) | [ ] |
+| 6.1 | Layout `/[locale]/admin` (sidebar/drawer móvil) + auth guard | [x] |
+| 6.2 | Dashboard básico (nº pedidos, recientes) | [x] |
+| 6.3 | CRUD productos **con campo URL producto Herbalife** | [x] |
+| 6.4 | Subida imágenes a Supabase Storage | [x] |
+| 6.5 | CRUD categorías | [x] |
+| 6.6 | Lista/detalle pedidos + cambio de estado | [x] |
+| 6.7 | En detalle pedido: abrir `externalProductUrl` por línea | [x] |
+| 6.8 | CRUD blog (draft/publish) | [x] |
 
 **Checkpoint:** admin gestiona catálogo y pedidos de punta a punta (fulfillment manual).
 
@@ -434,3 +434,4 @@ Nunca commitear `.env.local`. Mantener `.env.example` actualizado.
 | 2026-08-01 | Stripe test verificado end-to-end: keys test en `.env.local`, pago con 4242 en checkout real → webhook `checkout.session.completed` [200] → pedido `paid` con `externalProductUrl`/`external_sku` por línea. CLI Stripe instalado (winget `Stripe.StripeCli`); `stripe listen` reenvía a `localhost:3000/api/webhooks/stripe`. |
 | 2026-08-01 | Fix `proxy.ts`: excluir `/api` del matcher de next-intl (el proxy reescribía `/api/checkout` → `/es/api/checkout` → 404). Commit `97c7818`. |
 | 2026-08-01 | Skills instalados globalmente para opencode (`~/.agents/skills/`): `ui-ux-pro-max`, `webapp-testing`, `find-skills`, `nextjs-developer`, `software-architecture`. `nextjs-developer` de `zenobi-us/dotfiles` ya no existe → se usó `jeffallan/claude-skills@nextjs-developer`. |
+| 2026-08-02 | Fase 6 (Panel admin) completada: layout con guard `requireAdmin`, dashboard con stats reales (pedidos, nuevos, productos, categorías, borradores + 5 recientes), CRUD productos (con `externalProductUrl`/`external_sku` obligatorios por regla de negocio, slug auto, categoría, activo/disponible), subida de imágenes a Supabase Storage (bucket `product-images`, Server Actions + `bodySizeLimit: 10mb` en `experimental`, `remotePatterns` para `**.supabase.co`), CRUD categorías, lista/detalle pedidos con filtro por estado y cambio de estado, enlace "Abrir en Herbalife" por línea con `externalProductUrl`, CRUD blog (draft/publish). Todo con Prisma + i18n (`es/en/pt`). Commit `16be889`. |
