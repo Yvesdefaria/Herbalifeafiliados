@@ -6,6 +6,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 const links = [
   { href: "/admin", key: "dashboard" as const, exact: true },
   { href: "/admin/productos", key: "products" as const, exact: false },
+  { href: "/admin/categorias", key: "categories" as const, exact: false },
   { href: "/admin/pedidos", key: "orders" as const, exact: false },
   { href: "/admin/blog", key: "blog" as const, exact: false },
 ];
