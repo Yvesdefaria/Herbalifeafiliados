@@ -319,14 +319,14 @@ En MVP: textos de producto/blog en español en la tabla principal. Migrar a trad
 |---|----------|--------|
 | 8.1 | `sitemap.xml` multi-locale + `robots.txt` | [x] |
 | 8.2 | JSON-LD Organization + Product (iteración 1) | [x] |
-| 8.3 | Medir Core Web Vitals móvil (LCP, CLS) y corregir lo crítico | [ ] |
+| 8.3 | Medir Core Web Vitals móvil (LCP, CLS) y corregir lo crítico | [x] |
 | 8.4 | Aviso legal, privacidad, cookies (placeholders ES) | [x] |
 | 8.5 | Banner cookies simple | [x] |
 | 8.6 | UI 100% ES + moneda EUR + formatos ES | [x] |
 | 8.7 | Loading / error / toasts en acciones clave | [x] |
-| 8.8 | Documentar en AGENTS.md: strings → `messages/*.json` | [ ] |
+| 8.8 | Documentar en AGENTS.md: strings → `messages/*.json` | [x] |
 
-**Checkpoint:** sitio presentable en móvil; SEO base medible; legales enlazados.
+**Checkpoint:** sitio presentable en móvil; SEO base medible; legales enlazados. CWV local (Playwright móvil): home LCP 388ms/CLS 0, catálogo 412ms/0, blog 312ms/0. Medición definitiva en producción (PageSpeed Insights) tras el deploy de Fase 9.
 
 ---
 
@@ -442,5 +442,6 @@ Nunca commitear `.env.local`. Mantener `.env.example` actualizado.
 | 2026-08-02 | Fase 8.1–8.2 (bloque SEO): `app/sitemap.ts` multi-locale (es/en/pt + x-default, productos publicados + posts publicados + estáticas), `app/robots.ts` (disallow admin/api/mi-cuenta/carrito/checkout/pago/login/registro en 4 variantes), JSON-LD Organization en layout + JSON-LD Product en detalle producto, `x-default` en layout/producto/blog (se corrigió el del blog que apuntaba a URL sin prefijo), skip link + `id="main"`, `:focus-visible` global y `prefers-reduced-motion`. Build + lint OK. |
 | 2026-08-02 | Fase 8.4–8.5 (legal ES + cookies): páginas `/legal`, `/privacidad`, `/cookies` con `components/legal/LegalPage.tsx` (contenido placeholder ES en `messages/*.json`, secciones por namespace), footer con enlaces reales (antes spans), banner `CookieConsent` cliente con localStorage (`cookie-consent`), botón aceptar + enlace a política, `role="dialog"`. Verificado con Playwright (banner → aceptar → persiste oculto; 3 páginas con h1; 0 errores de consola). |
 | 2026-08-02 | Fase 8.6–8.7 (pulido): formatos confirmados `Intl.NumberFormat es-ES` + EUR en `lib/format.ts`; aria-labels de nav localizados (`nav.mainNav`/`nav.mobileNav`); `aria-label` en inputs de checkout (a11y); `loading.tsx` (skeleton + sr-only) y `error.tsx` (client con `unstable_retry`, patrón v16.2) para `[locale]` y `admin`. Smoke test 6 páginas: 200, h1 único, 0 errores consola. |
+| 2026-08-02 | Fase 8.3–8.8 (CWV + docs): CWV móvil local con Playwright → home LCP 388ms/CLS 0, catálogo 412ms/0, blog 312ms/0 (baseline; PSI en producción tras Fase 9). AGENTS.md: regla i18n ampliada (todo string de UI, legal y estados en `messages/*.json`). **Fase 8 completada.** |
 
 

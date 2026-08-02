@@ -90,6 +90,7 @@ prisma/           # schema y migraciones (pendiente)
 - Locales: `es`, `en`, `pt`
 - Rutas bajo `app/[locale]/...`
 - **Nunca** hardcodear textos de UI en componentes. Usar `useTranslations` / `getTranslations` (next-intl).
+- Todo string visible de la UI vive en `messages/*.json`: textos de interfaz, placeholders, aria-labels, títulos de página, contenido de páginas legales (`legalNotice`, `privacyPolicy`, `cookiesPolicy`), banners (`cookiesBanner`) y estados (`loading`, `error`).
 - Al añadir una key en `messages/es.json`, añadir la **misma key** en `en.json` y `pt.json` (valor puede ser español temporalmente).
 - Path segments iguales entre idiomas (`/es/productos`, `/en/productos`) salvo decisión explícita en contrario.
 - Admin puede permanecer monoidioma (`es`) hasta que se decida internacionalizarlo.
