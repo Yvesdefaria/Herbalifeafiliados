@@ -335,14 +335,16 @@ En MVP: textos de producto/blog en español en la tabla principal. Migrar a trad
 | # | Subtarea | Estado |
 |---|----------|--------|
 | 9.1 | Repo GitHub + push | [x] |
-| 9.2 | Proyecto Vercel enlazado | [ ] |
-| 9.3 | Env vars producción (Supabase, Stripe, etc.) | [ ] |
+| 9.2 | Proyecto Vercel enlazado | [x] |
+| 9.3 | Env vars producción (Supabase, Stripe, etc.) | [x] |
 | 9.4 | Webhook Stripe → URL prod | [ ] |
 | 9.5 | Comprobar dominio `herbalifeafiliado.es` + 2–3 alternativas | [ ] |
 | 9.6 | DNS → Vercel, HTTPS | [ ] |
 | 9.7 | Checklist go-live (keys, legales, productos reales) | [ ] |
 
 Decisión (2026-08-02): lanzar primero con dominio gratuito `*.vercel.app`; dominio propio (sin marca "Herbalife" para evitar conflicto con Reglas de Conducta) se decide y añade en fase posterior. Disponibilidad DNS preliminar (NXDOMAIN → libres): `herbalifeafiliado.es`, `herbalifeafiliado.com`, `afiliadoherbalife.es`, `tuafiliadoherbalife.es`, `afiliado-herbalife.es`, `herbalife-wellness.es`, `herbalifewellness.es`. Registrado: `miherbalife.es`. Confirmar en registrar antes de comprar.
+
+Estado deploy (2026-08-02): producción activa en `https://herbalifeafiliados.vercel.app` (rama main). Env vars Production configuradas (NEXT_PUBLIC_SITE_URL, Supabase x3, DATABASE_URL pooler, Stripe test x2). Fixes de build: `postinstall: prisma generate` + `prisma.config.ts` con fallback de URL + `lib/db.ts` con Prisma lazy (proxy).
 
 **Checkpoint:** URL pública end-to-end en test; live cuando se decida.
 
@@ -446,5 +448,6 @@ Nunca commitear `.env.local`. Mantener `.env.example` actualizado.
 | 2026-08-02 | Fase 8.6–8.7 (pulido): formatos confirmados `Intl.NumberFormat es-ES` + EUR en `lib/format.ts`; aria-labels de nav localizados (`nav.mainNav`/`nav.mobileNav`); `aria-label` en inputs de checkout (a11y); `loading.tsx` (skeleton + sr-only) y `error.tsx` (client con `unstable_retry`, patrón v16.2) para `[locale]` y `admin`. Smoke test 6 páginas: 200, h1 único, 0 errores consola. |
 | 2026-08-02 | Fase 8.3–8.8 (CWV + docs): CWV móvil local con Playwright → home LCP 388ms/CLS 0, catálogo 412ms/0, blog 312ms/0 (baseline; PSI en producción tras Fase 9). AGENTS.md: regla i18n ampliada (todo string de UI, legal y estados en `messages/*.json`). **Fase 8 completada.** |
 | 2026-08-02 | Fase 9 (inicio): repo en GitHub y push `9136496..4e83b33` (9.1 [x]). Decisión: deploy primero con `*.vercel.app`; dominio propio (sin marca Herbalife) en fase posterior. Env vars confirmadas en código: `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `DATABASE_URL` (pooler), `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`. |
+| 2026-08-02 | Fase 9 (deploy): fix de build para Vercel — `lib/generated/prisma` estaba en `.gitignore` → añadido `postinstall: prisma generate`; `prisma.config.ts` con fallback de URL para `generate` sin env vars; `lib/db.ts` con Prisma lazy (Proxy) para no romper el build sin `DATABASE_URL` (falla solo en runtime). **9.2 [x] producción activa** en `https://herbalifeafiliados.vercel.app`. **9.3 [x]** env vars Production configuradas (7 vars: SITE_URL, Supabase x3, DATABASE_URL pooler, Stripe test x2). Falta `STRIPE_WEBHOOK_SECRET` (9.4). |
 
 
