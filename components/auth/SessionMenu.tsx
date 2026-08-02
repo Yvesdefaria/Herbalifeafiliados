@@ -11,7 +11,7 @@ export async function SessionMenu() {
     return (
       <Link
         href="/login"
-        className="inline-flex h-10 items-center rounded-lg border border-emerald-700 px-3 text-sm font-medium text-emerald-800 transition hover:bg-emerald-50"
+        className="inline-flex h-9 items-center rounded-lg border border-emerald-700 px-2.5 text-sm font-medium text-emerald-800 transition hover:bg-emerald-50 sm:h-10 sm:px-3"
       >
         {t("login")}
       </Link>
@@ -22,14 +22,14 @@ export async function SessionMenu() {
     <div className="flex items-center gap-1.5">
       <Link
         href={user.role === "admin" ? "/admin" : "/mi-cuenta"}
-        className="inline-flex h-10 items-center rounded-lg bg-emerald-50 px-3 text-sm font-medium text-emerald-800 transition hover:bg-emerald-100"
+        className="inline-flex h-9 max-w-28 items-center truncate rounded-lg bg-emerald-50 px-2.5 text-sm font-medium text-emerald-800 transition hover:bg-emerald-100 sm:h-10 sm:max-w-none sm:px-3"
       >
         {user.name ?? user.email}
       </Link>
       <form action={logout}>
         <button
           type="submit"
-          className="inline-flex h-10 items-center rounded-lg px-2 text-sm font-medium text-zinc-500 transition hover:bg-zinc-100 hover:text-zinc-800"
+          className="inline-flex h-9 items-center rounded-lg px-2 text-sm font-medium text-zinc-500 transition hover:bg-zinc-100 hover:text-zinc-800 sm:h-10"
         >
           {t("logout")}
         </button>

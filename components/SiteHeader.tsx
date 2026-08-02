@@ -25,7 +25,7 @@ export function SiteHeader({ sessionMenu }: Props) {
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-3 px-4 sm:h-16 sm:px-6">
         <Link
           href="/"
-          className="shrink-0 text-sm font-semibold tracking-tight text-emerald-800 sm:text-base"
+          className="min-w-0 truncate text-sm font-semibold tracking-tight text-emerald-800 sm:text-base"
         >
           Herbalife Afiliado
         </Link>
@@ -47,9 +47,9 @@ export function SiteHeader({ sessionMenu }: Props) {
             );
           })}
         </nav>
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <LocaleSwitcher />
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             <CartButton />
             {sessionMenu}
           </div>

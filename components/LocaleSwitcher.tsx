@@ -19,7 +19,7 @@ export function LocaleSwitcher() {
             key={code}
             href={href}
             hrefLang={code}
-            className={`inline-flex h-9 items-center rounded-lg px-2 text-xs font-medium transition ${
+            className={`inline-flex h-8 items-center rounded-lg px-1.5 text-[11px] font-medium transition sm:h-9 sm:px-2 sm:text-xs ${
               active
                 ? "bg-emerald-700 text-white"
                 : "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900"
