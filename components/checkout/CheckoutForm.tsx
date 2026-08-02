@@ -75,6 +75,7 @@ export function CheckoutForm() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder={t("name")}
+            aria-label={t("name")}
             className="h-11 w-full rounded-xl border border-zinc-200 bg-white px-4 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-emerald-600 focus:outline-none"
           />
           <input
@@ -83,6 +84,7 @@ export function CheckoutForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={t("email")}
+            aria-label={t("email")}
             className="h-11 w-full rounded-xl border border-zinc-200 bg-white px-4 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-emerald-600 focus:outline-none"
           />
           <input
@@ -90,12 +92,14 @@ export function CheckoutForm() {
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             placeholder={t("phone")}
+            aria-label={t("phone")}
             className="h-11 w-full rounded-xl border border-zinc-200 bg-white px-4 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-emerald-600 focus:outline-none"
           />
           <textarea
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             placeholder={t("address")}
+            aria-label={t("address")}
             rows={3}
             className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-emerald-600 focus:outline-none"
           />

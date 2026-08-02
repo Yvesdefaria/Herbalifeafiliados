@@ -6,6 +6,8 @@
   },
   "nav": {
     "skipToContent": "Skip to content",
+    "mainNav": "Main navigation",
+    "mobileNav": "Mobile navigation",
     "home": "Home",
     "products": "Products",
     "blog": "Blog",
@@ -266,6 +268,14 @@
     "message": "Usamos cookies técnicas y de preferencias para que la web funcione y para recordar tus ajustes. Puedes consultar nuestra política o aceptarlas.",
     "accept": "Aceptar",
     "moreInfo": "Más información"
+  },
+  "loading": {
+    "loading": "Loading..."
+  },
+  "error": {
+    "title": "Something went wrong",
+    "message": "An unexpected error occurred. Please try again.",
+    "retry": "Try again"
   },
   "locale": {
     "label": "Language",

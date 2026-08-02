@@ -6,6 +6,8 @@
   },
   "nav": {
     "skipToContent": "Saltar al contenido",
+    "mainNav": "Navegación principal",
+    "mobileNav": "Navegación móvil",
     "home": "Inicio",
     "products": "Productos",
     "blog": "Blog",
@@ -266,6 +268,14 @@
     "message": "Usamos cookies técnicas y de preferencias para que la web funcione y para recordar tus ajustes. Puedes consultar nuestra política o aceptarlas.",
     "accept": "Aceptar",
     "moreInfo": "Más información"
+  },
+  "loading": {
+    "loading": "Cargando..."
+  },
+  "error": {
+    "title": "Algo salió mal",
+    "message": "Ha ocurrido un error inesperado. Inténtalo de nuevo.",
+    "retry": "Reintentar"
   },
   "locale": {
     "label": "Idioma",

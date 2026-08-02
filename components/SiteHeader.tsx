@@ -29,7 +29,7 @@ export function SiteHeader({ sessionMenu }: Props) {
         >
           Herbalife Afiliado
         </Link>
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
+        <nav className="hidden items-center gap-1 md:flex" aria-label={t("mainNav")}>
           {links.map((link) => {
             const active = pathname === link.href;
             return (
@@ -60,7 +60,7 @@ export function SiteHeader({ sessionMenu }: Props) {
       </div>
       <nav
         className="flex gap-1 overflow-x-auto border-t border-zinc-100 px-2 py-2 md:hidden"
-        aria-label="Mobile"
+        aria-label={t("mobileNav")}
       >
         {links.map((link) => {
           const active = pathname === link.href;
