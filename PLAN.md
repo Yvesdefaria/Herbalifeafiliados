@@ -451,4 +451,23 @@ Nunca commitear `.env.local`. Mantener `.env.example` actualizado.
 | 2026-08-02 | Fase 9 (deploy): fix de build para Vercel — `lib/generated/prisma` estaba en `.gitignore` → añadido `postinstall: prisma generate`; `prisma.config.ts` con fallback de URL para `generate` sin env vars; `lib/db.ts` con Prisma lazy (Proxy) para no romper el build sin `DATABASE_URL` (falla solo en runtime). **9.2 [x] producción activa** en `https://herbalifeafiliados.vercel.app`. **9.3 [x]** env vars Production configuradas (7 vars: SITE_URL, Supabase x3, DATABASE_URL pooler, Stripe test x2). **9.4 [x]** webhook Stripe activo (evento `checkout.session.completed`) verificado end-to-end (pedido `8b27ad5d` → `paid`). Fix: teléfono y dirección obligatorios en checkout. |
 | 2026-08-02 | Fase 9.7 (CWV en producción): **PageSpeed Insights** home móvil → Perf **97**, Accesibilidad **100**, Prácticas **100**, SEO **91** (fix: texto del enlace de cookies "Más información" → "Ver política de cookies" en es/en/pt). Métricas: FCP 0,9s · LCP 2,3s · TBT 40ms · **CLS 0** · SI 3,8s. CrUX sin datos (sitio nuevo). Cross-check Playwright móvil: home LCP 3,4s frío / 712ms caliente, catálogo ~288ms, blog ~356ms, CLS 0. Queda de 9.7: legales reales, Stripe live, catálogo definitivo. |
 
+---
+
+## 12. Backlog de mejoras de página (foco actual: UX pública)
+
+> Prioridad de Yves (2026-08-02): centrarse en la página; **legales y Stripe live quedan en pausa**.
+
+| # | Mejora | Estado |
+|---|--------|--------|
+| P1 | Auditoría visual móvil completa (screenshots 375px + smoke todas las páginas públicas) | [ ] |
+| P2 | `LocaleSwitcher` → menú desplegable de idioma (los 3 botones `ES/EN/PT` inline ocupan demasiado) | [ ] |
+| P3 | Home: hero más cuidado, sección "cómo funciona"/garantías, FAQ | [ ] |
+| P4 | Catálogo: ordenación (precio/nombre), filtro por categoría en UI, búsqueda mejorada | [ ] |
+| P5 | Detalle producto: productos relacionados, nota de disponibilidad visible | [ ] |
+| P6 | Blog: paginación, etiquetas, posts relacionados | [ ] |
+| P7 | Carrito: editar cantidades desde el carrito, subtotal visible | [ ] |
+| P8 | Checkout: resumen mejorado y señales de confianza | [ ] |
+| P9 | Re-medir PSI tras `inlineCss` (verificar SEO 100 y LCP) | [ ] |
+| P10 | i18n completo `en`/`pt` + contenido traducido + slugs localizados (F1/F2/F3/F7) | [ ] |
+
 
