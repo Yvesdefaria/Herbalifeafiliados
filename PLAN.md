@@ -337,14 +337,14 @@ En MVP: textos de producto/blog en español en la tabla principal. Migrar a trad
 | 9.1 | Repo GitHub + push | [x] |
 | 9.2 | Proyecto Vercel enlazado | [x] |
 | 9.3 | Env vars producción (Supabase, Stripe, etc.) | [x] |
-| 9.4 | Webhook Stripe → URL prod | [ ] |
+| 9.4 | Webhook Stripe → URL prod | [x] |
 | 9.5 | Comprobar dominio `herbalifeafiliado.es` + 2–3 alternativas | [ ] |
 | 9.6 | DNS → Vercel, HTTPS | [ ] |
 | 9.7 | Checklist go-live (keys, legales, productos reales) | [ ] |
 
 Decisión (2026-08-02): lanzar primero con dominio gratuito `*.vercel.app`; dominio propio (sin marca "Herbalife" para evitar conflicto con Reglas de Conducta) se decide y añade en fase posterior. Disponibilidad DNS preliminar (NXDOMAIN → libres): `herbalifeafiliado.es`, `herbalifeafiliado.com`, `afiliadoherbalife.es`, `tuafiliadoherbalife.es`, `afiliado-herbalife.es`, `herbalife-wellness.es`, `herbalifewellness.es`. Registrado: `miherbalife.es`. Confirmar en registrar antes de comprar.
 
-Estado deploy (2026-08-02): producción activa en `https://herbalifeafiliados.vercel.app` (rama main). Env vars Production configuradas (NEXT_PUBLIC_SITE_URL, Supabase x3, DATABASE_URL pooler, Stripe test x2). Fixes de build: `postinstall: prisma generate` + `prisma.config.ts` con fallback de URL + `lib/db.ts` con Prisma lazy (proxy).
+Estado deploy (2026-08-02): producción activa en `https://herbalifeafiliados.vercel.app` (rama main). Env vars Production configuradas (NEXT_PUBLIC_SITE_URL, Supabase x3, DATABASE_URL pooler, Stripe test x2). Fixes de build: `postinstall: prisma generate` + `prisma.config.ts` con fallback de URL + `lib/db.ts` con Prisma lazy (proxy). Webhook Stripe activo: endpoint `/api/webhooks/stripe` con evento `checkout.session.completed`; verificado end-to-end (pedido `8b27ad5d` en `paid`). Fix: teléfono y dirección obligatorios en checkout (cliente + API).
 
 **Checkpoint:** URL pública end-to-end en test; live cuando se decida.
 
