@@ -2,26 +2,31 @@
 
 > Documento vivo. Marca checkboxes al completar. Tolera cambios de alcance.
 
-**Estado:** MVP completo (Fases 0–9) desplegado y verificado en `https://herbalifeafiliados.vercel.app` · **Foco actual:** mejorar la página pública (backlog §12) · **Decisión pendiente:** modelo de compra (Stripe propio vs HerbalifeOne + WhatsApp, ver §13) · **En pausa:** legales reales, Stripe live, dominio propio · Historial de cambios → `CHANGELOG.md`.
+**Estado:** MVP completo (Fases 0–9) desplegado y verificado en `https://herbalifeafiliados.vercel.app` · **Foco actual:** mejorar la página pública (backlog §12) · **Auditoría pública completada** (a11y, i18n, SEO, funcional — 2026-08-02) · **Decisión pendiente:** modelo de compra (Stripe propio vs HerbalifeOne + WhatsApp, ver §13) · **En pausa:** legales reales, Stripe live, dominio propio · Historial de cambios → `CHANGELOG.md`.
 
 ---
 
 ## Última sesión (2026-08-02) — dónde retomar
 
-**Hecho en esta sesión** (commits `c371acc`, `0095305`; push `1fe8a76..0095305` → deploy Vercel):
-- **Cumplimiento Herbalife**: análisis de los Términos de Uso → disclaimer "Miembro Independiente de Herbalife" en el footer (es/en/pt) + subsección "Cumplimiento con Herbalife" en §13 con 4 acciones pendientes.
-- **Fix desbordamiento horizontal móvil**: header compacto en móvil (carrito con icono + contador, idiomas y botones más pequeños, logo truncable). Verificado con Playwright a 375px y 320px en 11 páginas públicas: `scrollWidth == viewport`, sin scroll horizontal.
-- Quedó desplegado también `inlineCss` (`6592f09`, -440ms render-blocking).
+**Hecho en esta sesión** (push batch `a21448d..38ca2a3` → deploy Vercel; 6 commits):
+- **Cumplimiento Herbalife** (`c371acc`): análisis de los Términos de Uso → disclaimer "Miembro Independiente de Herbalife" en el footer (es/en/pt) + subsección "Cumplimiento con Herbalife" en §13 con 4 acciones pendientes.
+- **Fix desbordamiento horizontal móvil** (`0095305`): header compacto en móvil (carrito con icono + contador, idiomas y botones más pequeños, logo truncable). Verificado con Playwright a 375px y 320px en 11 páginas públicas: `scrollWidth == viewport`.
+- **Skills al nivel de proyecto** (`b2f39fe`): `.opencode/skills/` con las 8 skills para el picker de la TUI (requiere reiniciar opencode).
+- **Auditoría pública completa con las 8 skills** (2 agentes: UI/a11y + Next/SEO/arquitectura + Playwright funcional 375px en 13 páginas: h1 único, lang, labels, alt, sin overflow, 0 errores de consola):
+  - **Backend** (`7c74058`): `proxy.ts` excluye `/auth` del matcher next-intl (rompía el OAuth callback); webhook Stripe idempotente (solo `payment_status=paid`, `updateMany` con `status != paid`, usa `order.currency` real); checkout borra el pedido si Stripe falla (sin huérfanos).
+  - **Frontend público** (`38ca2a3`): a11y (autoComplete+name y focus-visible en checkout, `role="alert"` en errores, `aria-live` en feedback async/carrito, `aria-current` en categorías, `tabular-nums` en precios, `translate="no"` en la marca, `type="button"` en banner cookies, `…` en estados es/en/pt, tap-highlight + text-wrap en `globals.css`); SEO (`lib/site.ts` centraliza `NEXT_PUBLIC_SITE_URL`/alternates — 13 usos → 1 helper; metadata completa home/productos/blog con canonical+hreflang+OG; títulos "no encontrado" traducidos; JSON-LD Product con `sku`/`brand`/`availability` y BlogPosting con `author`/`publisher`; `not-found.tsx` por locale; `React.cache` en getters de detalle; `formatPrice` locale-aware). Lint + build + Playwright verificados.
 
 **Pendiente de Yves (decisión):**
 - **Modelo de compra**: A) cobro con Stripe propio (Yves es el vendedor legal: facturación, desistimiento 14/30 días, RGPD/LSSI) vs B) redirigir a **HerbalifeOne con código de descuento + WhatsApp** (recomendado, es lo que hace herbalspain.com desde 2016; sin cobro online, sin stock). Los Términos de Uso no deciden esto → **confirmar en las Reglas de Conducta** (pedirlas a la upline) antes de mantener el modelo A.
 
 **Siguientes pasos sugeridos:**
 1. Decidir modelo de compra (afecta checkout, pago, legal y webhook).
-2. **P2**: `LocaleSwitcher` → menú desplegable de idioma (ya compactado en móvil; falta el dropdown).
-3. **P9**: re-medir PSI con `inlineCss` ya desplegado.
-4. **P1**: continuar auditoría móvil (falta revisión de páginas admin y tablas).
+2. **P2**: `LocaleSwitcher` → menú desplegable de idioma (los 3 botones inline ya compactados; falta el dropdown).
+3. **P9**: re-medir PSI con `inlineCss` + fixes de la auditoría ya desplegados.
+4. **P1**: revisar páginas admin y tablas en móvil (la auditoría se centró en el front público).
 5. Si se mantiene Stripe: legales reales + Stripe live (Fase 9.5–9.7).
+
+**Pendientes de la auditoría (no accionables sin más input):** 404 global para URLs desconocidas usa el default de Next (los 404 de producto/post ya están traducidos); caching con `revalidate` para queries públicas; límite ~160 chars en `description` de BD; JSON-LD Organization sin logo/sameAs/contactPoint (requiere perfiles reales del afiliado); "Quitar" del carrito sin confirmación/undo (acción reversible, aceptado para MVP).
 
 **Para continuar:** `npm run dev` · documento vivo = `PLAN.md` + `CHANGELOG.md` · commit por bloque y push en lote cuando Yves lo indique.
 
@@ -365,7 +370,7 @@ En MVP: textos de producto/blog en español en la tabla principal. Migrar a trad
 
 Decisión (2026-08-02): lanzar primero con dominio gratuito `*.vercel.app`; dominio propio (sin marca "Herbalife" para evitar conflicto con Reglas de Conducta) se decide y añade en fase posterior. Disponibilidad DNS preliminar (NXDOMAIN → libres): `herbalifeafiliado.es`, `herbalifeafiliado.com`, `afiliadoherbalife.es`, `tuafiliadoherbalife.es`, `afiliado-herbalife.es`, `herbalife-wellness.es`, `herbalifewellness.es`. Registrado: `miherbalife.es`. Confirmar en registrar antes de comprar.
 
-Estado deploy (2026-08-02): producción activa en `https://herbalifeafiliados.vercel.app` (rama main). Env vars Production configuradas (NEXT_PUBLIC_SITE_URL, Supabase x3, DATABASE_URL pooler, Stripe test x2). Fixes de build: `postinstall: prisma generate` + `prisma.config.ts` con fallback de URL + `lib/db.ts` con Prisma lazy (proxy). Webhook Stripe activo: endpoint `/api/webhooks/stripe` con evento `checkout.session.completed`; verificado end-to-end (pedido `8b27ad5d` en `paid`). Fix: teléfono y dirección obligatorios en checkout (cliente + API). Después del push `1fe8a76..0095305`: `inlineCss` activo, disclaimer Herbalife en footer y header móvil sin desbordamiento horizontal.
+Estado deploy (2026-08-02): producción activa en `https://herbalifeafiliados.vercel.app` (rama main). Env vars Production configuradas (NEXT_PUBLIC_SITE_URL, Supabase x3, DATABASE_URL pooler, Stripe test x2). Fixes de build: `postinstall: prisma generate` + `prisma.config.ts` con fallback de URL + `lib/db.ts` con Prisma lazy (proxy). Webhook Stripe activo: endpoint `/api/webhooks/stripe` con evento `checkout.session.completed`; verificado end-to-end (pedido `8b27ad5d` en `paid`). Fix: teléfono y dirección obligatorios en checkout (cliente + API). Después del push `1fe8a76..0095305`: `inlineCss` activo, disclaimer Herbalife en footer y header móvil sin desbordamiento horizontal. **Tras el push `a21448d..38ca2a3`**: auditoría pública completa (a11y/i18n/SEO/funcional) con fixes de robustez backend (proxy `/auth`, webhook idempotente, checkout sin huérfanos) y metadata/JSON-LD/not-found/formatPrice locale.
 
 **Checkpoint:** URL pública end-to-end en test; live cuando se decida.
 
@@ -453,7 +458,7 @@ Historial completo de cambios, decisiones y trabajo completado → **`CHANGELOG.
 
 | # | Mejora | Estado |
 |---|--------|--------|
-| P1 | Auditoría visual móvil completa (screenshots 375px + smoke todas las páginas públicas). Hecho 2026-08-02: fix desbordamiento horizontal (header compacto, `0095305`); falta revisión admin y tablas | [ ] |
+| P1 | Auditoría visual móvil completa (screenshots 375px + smoke todas las páginas públicas). Hecho 2026-08-02: fix desbordamiento horizontal (header compacto, `0095305`) + **auditoría funcional/a11y/SEO completa del front público** (`7c74058`+`38ca2a3`, 13 páginas OK); falta revisión admin y tablas | [ ] |
 | P2 | `LocaleSwitcher` → menú desplegable de idioma (los 3 botones `ES/EN/PT` inline ocupan demasiado). Ya compactado en móvil (`0095305`); falta el dropdown | [ ] |
 | P3 | Home: hero más cuidado, sección "cómo funciona"/garantías, FAQ | [ ] |
 | P4 | Catálogo: ordenación (precio/nombre), filtro por categoría en UI, búsqueda mejorada | [ ] |
