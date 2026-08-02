@@ -49,10 +49,7 @@ export function SiteHeader({ sessionMenu }: Props) {
         </nav>
         <div className="flex items-center gap-2">
           <LocaleSwitcher />
-          <div className="md:hidden">
-            <CartButton />
-          </div>
-          <div className="hidden items-center gap-2 md:flex">
+          <div className="flex items-center gap-2">
             <CartButton />
             {sessionMenu}
           </div>
