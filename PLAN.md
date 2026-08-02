@@ -524,6 +524,23 @@ herbalspain.com **no cobra online**: el botón de compra redirige a la plataform
 | "Descuentos VIP" | [x] | [ ] |
 | Páginas Envíos / Devoluciones / Pago seguro | [x] | [ ] |
 | Footer con info de tienda (dirección, teléfono, email) | [x] | [ ] |
-| Disclaimer "Miembro Independiente Herbalife" en footer | [x] | [ ] |
+| Disclaimer "Miembro Independiente Herbalife" en footer | [x] | [x] (2026-08-02, `SiteFooter`) |
+
+### Cumplimiento con Herbalife (Términos de Uso y Reglas de Conducta)
+
+> Analizados los **Términos de Uso** de Herbalife (2026-08-02). Puntos que afectan a nuestra web:
+
+- **§6 — Sitios de Distribuidores Independientes**: se **permite** tener web propia, pero el distribuidor es el único responsable de que el contenido cumpla las **Reglas de Conducta**, **Reglamentos para Internet**, reglas de pedidos postales y normativa estatal/autonómica. *Herbalife no se hace responsable de las consecuencias de las webs de distribuidores.*
+- **§9 — Derecho de desistimiento**: 30 días de devolución + reembolso en 14 días → obligatorio si cobramos (Modelo A/Stripe).
+- **§12 — Conducta del usuario**: prohibido **vincularse desde sitios con afirmaciones de salud/curativas** y hacer claims de salud → revisar descripciones y blog.
+- **§15 — Marcas**: logo y nombres de producto son de Herbalife; usarlos solo como identificadores, no como marca propia.
+- **§20 — Renuncia de garantías**: la web del distribuidor va "tal cual"; el riesgo es del distribuidor.
+- **Conclusión**: los Términos de Uso **no** deciden si se puede cobrar online directamente. Eso está en las **Reglas de Conducta** (documento interno del miembro). → Pedirlas a la upline para confirmar antes de mantener el Modelo A.
+
+### Acciones de cumplimiento (plan)
+- [x] Disclaimer "Miembro Independiente de Herbalife" en el footer (es/en/pt) — hecho 2026-08-02.
+- [ ] Revisar contenido (descripciones, blog) para eliminar claims de salud.
+- [ ] Confirmar en Reglas de Conducta si el cobro online directo (Stripe) está permitido → decidir Modelo A vs B.
+- [ ] Solicitar Reglas de Conducta / Reglamentos para Internet (portal de miembro o upline).
 
 
