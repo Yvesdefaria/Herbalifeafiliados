@@ -196,6 +196,77 @@
     "privacy": "Privacidade",
     "cookies": "Cookies"
   },
+  "legalPages": {
+    "backToHome": "Volver al inicio"
+  },
+  "legalNotice": {
+    "title": "Aviso legal",
+    "updated": "Última actualización: 2 de agosto de 2026",
+    "sections": [
+      {
+        "heading": "Identificación del responsable",
+        "body": "El titular de este sitio web es un afiliado independiente de Herbalife Nutrition en España. Los datos identificativos del responsable se indicarán y actualizarán cuando el sitio se ponga en producción."
+      },
+      {
+        "heading": "Objeto",
+        "body": "Este sitio web tiene carácter informativo y comercial, y permite consultar el catálogo de productos Herbalife, realizar pedidos y leer contenidos del blog. Los pedidos se procesan a través del panel del afiliado."
+      },
+      {
+        "heading": "Propiedad intelectual",
+        "body": "Las marcas, logotipos y denominaciones de Herbalife son propiedad de sus respectivos titulares. Su uso en este sitio se limita a la identificación de los productos que el afiliado ofrece."
+      },
+      {
+        "heading": "Exención de responsabilidad",
+        "body": "Este texto es un placeholder. Antes del lanzamiento, revisar el aviso legal con el asesor correspondiente para ajustarlo a la normativa española (LSSI) y a la política de Herbalife sobre páginas de afiliados."
+      }
+    ]
+  },
+  "privacyPolicy": {
+    "title": "Política de privacidad",
+    "updated": "Última actualización: 2 de agosto de 2026",
+    "sections": [
+      {
+        "heading": "Responsable del tratamiento",
+        "body": "El responsable del tratamiento de los datos recogidos en este sitio es el afiliado independiente titular del sitio, conforme al Reglamento General de Protección de Datos (RGPD)."
+      },
+      {
+        "heading": "Datos que recogemos",
+        "body": "Recogemos los datos necesarios para tramitar pedidos: nombre, email, dirección de envío y datos de pago (estos últimos gestionados por la pasarela de pago, que no se almacenan en nuestra base de datos)."
+      },
+      {
+        "heading": "Finalidad y base legal",
+        "body": "Tus datos se utilizan para la ejecución del contrato de compra (gestionar y entregar tu pedido) y, si lo aceptas, para enviar información comercial. La base legal es la ejecución del contrato y el consentimiento."
+      },
+      {
+        "heading": "Tus derechos",
+        "body": "Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo al correo del afiliado. Este texto es un placeholder pendiente de revisión legal."
+      }
+    ]
+  },
+  "cookiesPolicy": {
+    "title": "Política de cookies",
+    "updated": "Última actualización: 2 de agosto de 2026",
+    "sections": [
+      {
+        "heading": "¿Qué son las cookies?",
+        "body": "Las cookies son pequeños archivos que se almacenan en tu dispositivo al visitar una web. Ayudan a que el sitio funcione correctamente y a mejorar tu experiencia."
+      },
+      {
+        "heading": "Cookies que usamos",
+        "body": "En este sitio se utilizan cookies técnicas necesarias para el funcionamiento (por ejemplo, mantener tu sesión o tu carrito) y cookies de preferencias (como el idioma elegido). Actualmente no usamos cookies de publicidad ni de análisis de terceros."
+      },
+      {
+        "heading": "Cómo gestionarlas",
+        "body": "Puedes aceptar o rechazar las cookies no necesarias mediante el banner. También puedes configurarlas desde tu navegador. Este texto es un placeholder pendiente de revisión legal."
+      }
+    ]
+  },
+  "cookiesBanner": {
+    "title": "Aviso de cookies",
+    "message": "Usamos cookies técnicas y de preferencias para que la web funcione y para recordar tus ajustes. Puedes consultar nuestra política o aceptarlas.",
+    "accept": "Aceptar",
+    "moreInfo": "Más información"
+  },
   "locale": {
     "label": "Idioma",
     "es": "Español",

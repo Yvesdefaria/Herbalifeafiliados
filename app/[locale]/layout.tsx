@@ -8,6 +8,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SessionMenu } from "@/components/auth/SessionMenu";
 import { CartProvider } from "@/lib/cart/CartContext";
+import { CookieConsent } from "@/components/legal/CookieConsent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -94,6 +95,7 @@ export default async function LocaleLayout({ children, params }: Props) {
               {children}
             </main>
             <SiteFooter />
+            <CookieConsent />
             <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{
