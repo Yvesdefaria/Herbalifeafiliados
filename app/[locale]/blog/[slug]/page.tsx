@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           `${siteUrl}${path}/blog/${post.slug}`,
         ]),
       ),
-      "x-default": `${siteUrl}/blog/${post.slug}`,
+      "x-default": `${siteUrl}/es/blog/${post.slug}`,
     },
   };
 
@@ -72,7 +72,9 @@ export default async function BlogPostPage({ params }: Props) {
     <div className="mx-auto w-full max-w-2xl flex-1 px-4 py-8 sm:px-6">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
       />
 
       <Link

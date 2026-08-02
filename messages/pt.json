@@ -5,6 +5,7 @@
     "description": "Loja de nutrição e bem-estar. Produtos Herbalife do seu afiliado de confiança."
   },
   "nav": {
+    "skipToContent": "Saltar para o conteúdo",
     "home": "Início",
     "products": "Produtos",
     "blog": "Blog",

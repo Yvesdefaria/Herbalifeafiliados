@@ -5,6 +5,7 @@
     "description": "Tienda de nutrición y bienestar. Productos Herbalife de tu afiliado de confianza."
   },
   "nav": {
+    "skipToContent": "Saltar al contenido",
     "home": "Inicio",
     "products": "Productos",
     "blog": "Blog",

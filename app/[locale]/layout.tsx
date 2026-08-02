@@ -49,6 +49,7 @@ export async function generateMetadata({
         es: "/es",
         en: "/en",
         pt: "/pt",
+        "x-default": "/es",
       },
     },
   };
@@ -63,6 +64,16 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   setRequestLocale(locale);
   const messages = await getMessages();
+  const t = await getTranslations({ locale, namespace: "meta" });
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const navT = await getTranslations("nav");
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: t("title"),
+    url: siteUrl,
+  };
 
   return (
     <html
@@ -72,9 +83,23 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <CartProvider>
+            <a
+              href="#main"
+              className="sr-only z-50 rounded-lg bg-emerald-700 px-4 py-2 text-sm font-medium text-white focus:not-sr-only focus:absolute focus:left-4 focus:top-4"
+            >
+              {navT("skipToContent")}
+            </a>
             <SiteHeader sessionMenu={<SessionMenu />} />
-            <main className="flex flex-1 flex-col">{children}</main>
+            <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
+              {children}
+            </main>
             <SiteFooter />
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+              }}
+            />
           </CartProvider>
         </NextIntlClientProvider>
       </body>

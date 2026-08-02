@@ -20,12 +20,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const languages = { es: "/es", en: "/en", pt: "/pt" } as const;
 
   return {
     title: product.name,
     description: product.description ?? undefined,
     alternates: {
       canonical: `${siteUrl}/${locale}/producto/${product.slug}`,
+      languages: {
+        ...Object.fromEntries(
+          Object.entries(languages).map(([lang, path]) => [
+            lang,
+            `${siteUrl}${path}/producto/${product.slug}`,
+          ]),
+        ),
+        "x-default": `${siteUrl}/es/producto/${product.slug}`,
+      },
     },
   };
 }
@@ -41,8 +51,29 @@ export default async function ProductDetailPage({ params }: Props) {
     notFound();
   }
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    image: product.imageUrl ?? undefined,
+    description: product.description ?? undefined,
+    offers: {
+      "@type": "Offer",
+      price: (product.priceCents / 100).toFixed(2),
+      priceCurrency: product.currency,
+      url: `${siteUrl}/${locale}/producto/${product.slug}`,
+    },
+  };
+
   return (
     <div className="mx-auto w-full max-w-lg flex-1 px-4 py-8 sm:max-w-2xl sm:px-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <Link
         href="/productos"
         className="text-sm font-medium text-emerald-700 hover:text-emerald-800"

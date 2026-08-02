@@ -5,6 +5,7 @@
     "description": "Nutrition and wellness store. Herbalife products from your trusted affiliate."
   },
   "nav": {
+    "skipToContent": "Skip to content",
     "home": "Home",
     "products": "Products",
     "blog": "Blog",
