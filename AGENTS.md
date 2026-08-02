@@ -145,6 +145,7 @@ prisma/           # schema y migraciones (pendiente)
 ## Regla de commits
 
 - Hacer un **commit por cada bloque lógico** de trabajo completado, **inmediatamente** al terminar el bloque y antes de pasar a la siguiente tarea. No acumular trabajo pendiente de commitear.
+- **Antes de cada commit**, añadir una entrada a `CHANGELOG.md` (fecha + qué se hizo + commit(s)), para que el historial quede siempre al día. El `CHANGELOG.md` vive aparte del `PLAN.md` (sección 11 redirige allí).
 - Mensajes en español o inglés, descriptivos, con prefijo de tipo: `feat:`, `fix:`, `chore:`, `docs:`, `refactor:`.
 - Antes de commitear, revisar `git status` y `git diff` para no incluir archivos no deseados (nunca `.env.local` ni claves).
 - No mezclar cambios no relacionados en el mismo commit.

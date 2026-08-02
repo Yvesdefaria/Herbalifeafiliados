@@ -2,7 +2,28 @@
 
 > Documento vivo. Marca checkboxes al completar. Tolera cambios de alcance.
 
-**Estado:** Fases 0–7 completadas y verificadas (pago Stripe test end-to-end OK; panel admin funcional; blog público live) · **Siguiente paso:** Fase 8 (SEO + legal ES + pulido)
+**Estado:** MVP completo (Fases 0–9) desplegado y verificado en `https://herbalifeafiliados.vercel.app` · **Foco actual:** mejorar la página pública (backlog §12) · **Decisión pendiente:** modelo de compra (Stripe propio vs HerbalifeOne + WhatsApp, ver §13) · **En pausa:** legales reales, Stripe live, dominio propio · Historial de cambios → `CHANGELOG.md`.
+
+---
+
+## Última sesión (2026-08-02) — dónde retomar
+
+**Hecho en esta sesión** (commits `c371acc`, `0095305`; push `1fe8a76..0095305` → deploy Vercel):
+- **Cumplimiento Herbalife**: análisis de los Términos de Uso → disclaimer "Miembro Independiente de Herbalife" en el footer (es/en/pt) + subsección "Cumplimiento con Herbalife" en §13 con 4 acciones pendientes.
+- **Fix desbordamiento horizontal móvil**: header compacto en móvil (carrito con icono + contador, idiomas y botones más pequeños, logo truncable). Verificado con Playwright a 375px y 320px en 11 páginas públicas: `scrollWidth == viewport`, sin scroll horizontal.
+- Quedó desplegado también `inlineCss` (`6592f09`, -440ms render-blocking).
+
+**Pendiente de Yves (decisión):**
+- **Modelo de compra**: A) cobro con Stripe propio (Yves es el vendedor legal: facturación, desistimiento 14/30 días, RGPD/LSSI) vs B) redirigir a **HerbalifeOne con código de descuento + WhatsApp** (recomendado, es lo que hace herbalspain.com desde 2016; sin cobro online, sin stock). Los Términos de Uso no deciden esto → **confirmar en las Reglas de Conducta** (pedirlas a la upline) antes de mantener el modelo A.
+
+**Siguientes pasos sugeridos:**
+1. Decidir modelo de compra (afecta checkout, pago, legal y webhook).
+2. **P2**: `LocaleSwitcher` → menú desplegable de idioma (ya compactado en móvil; falta el dropdown).
+3. **P9**: re-medir PSI con `inlineCss` ya desplegado.
+4. **P1**: continuar auditoría móvil (falta revisión de páginas admin y tablas).
+5. Si se mantiene Stripe: legales reales + Stripe live (Fase 9.5–9.7).
+
+**Para continuar:** `npm run dev` · documento vivo = `PLAN.md` + `CHANGELOG.md` · commit por bloque y push en lote cuando Yves lo indique.
 
 ---
 
@@ -344,7 +365,7 @@ En MVP: textos de producto/blog en español en la tabla principal. Migrar a trad
 
 Decisión (2026-08-02): lanzar primero con dominio gratuito `*.vercel.app`; dominio propio (sin marca "Herbalife" para evitar conflicto con Reglas de Conducta) se decide y añade en fase posterior. Disponibilidad DNS preliminar (NXDOMAIN → libres): `herbalifeafiliado.es`, `herbalifeafiliado.com`, `afiliadoherbalife.es`, `tuafiliadoherbalife.es`, `afiliado-herbalife.es`, `herbalife-wellness.es`, `herbalifewellness.es`. Registrado: `miherbalife.es`. Confirmar en registrar antes de comprar.
 
-Estado deploy (2026-08-02): producción activa en `https://herbalifeafiliados.vercel.app` (rama main). Env vars Production configuradas (NEXT_PUBLIC_SITE_URL, Supabase x3, DATABASE_URL pooler, Stripe test x2). Fixes de build: `postinstall: prisma generate` + `prisma.config.ts` con fallback de URL + `lib/db.ts` con Prisma lazy (proxy). Webhook Stripe activo: endpoint `/api/webhooks/stripe` con evento `checkout.session.completed`; verificado end-to-end (pedido `8b27ad5d` en `paid`). Fix: teléfono y dirección obligatorios en checkout (cliente + API).
+Estado deploy (2026-08-02): producción activa en `https://herbalifeafiliados.vercel.app` (rama main). Env vars Production configuradas (NEXT_PUBLIC_SITE_URL, Supabase x3, DATABASE_URL pooler, Stripe test x2). Fixes de build: `postinstall: prisma generate` + `prisma.config.ts` con fallback de URL + `lib/db.ts` con Prisma lazy (proxy). Webhook Stripe activo: endpoint `/api/webhooks/stripe` con evento `checkout.session.completed`; verificado end-to-end (pedido `8b27ad5d` en `paid`). Fix: teléfono y dirección obligatorios en checkout (cliente + API). Después del push `1fe8a76..0095305`: `inlineCss` activo, disclaimer Herbalife en footer y header móvil sin desbordamiento horizontal.
 
 **Checkpoint:** URL pública end-to-end en test; live cuando se decida.
 
@@ -422,34 +443,7 @@ Nunca commitear `.env.local`. Mantener `.env.example` actualizado.
 
 ## 11. Changelog del plan
 
-| Fecha | Cambio |
-|-------|--------|
-| 2026-07-30 | Plan inicial: Next + Supabase + Stripe + admin + blog + deploy |
-| 2026-07-30 | Supabase Auth; pagos Stripe; ubicación ES |
-| 2026-07-30 | Sin stock local; fulfillment vía panel Herbalife; `externalProductUrl` |
-| 2026-07-30 | Mobile-first + SEO iterativo; dominio objetivo `.es` |
-| 2026-07-30 | Fase 0: Context7 + AGENTS.md a nivel proyecto |
-| 2026-07-30 | i18n next-intl (es/en/pt) desde setup |
-| 2026-07-30 | Generado `PLAN.md` |
-| 2026-08-01 | Context7 verificado (0.7); Prisma 7 + Supabase conectados; `DATABASE_URL` → pooler IPv4 |
-| 2026-08-01 | Fase 3 (Auth) completada: login/registro, roles, admin guard, sesión |
-| 2026-08-01 | Fase 4 (Catálogo) completada: grid, detalle, categorías, búsqueda, seed |
-| 2026-08-01 | Fase 5 (Carrito + checkout) completada: carrito Context+localStorage, badge, checkout, Stripe Checkout, webhook → `paid`, éxito/cancelación |
-| 2026-08-01 | Stripe test verificado end-to-end: keys test en `.env.local`, pago con 4242 en checkout real → webhook `checkout.session.completed` [200] → pedido `paid` con `externalProductUrl`/`external_sku` por línea. CLI Stripe instalado (winget `Stripe.StripeCli`); `stripe listen` reenvía a `localhost:3000/api/webhooks/stripe`. |
-| 2026-08-01 | Fix `proxy.ts`: excluir `/api` del matcher de next-intl (el proxy reescribía `/api/checkout` → `/es/api/checkout` → 404). Commit `97c7818`. |
-| 2026-08-01 | Skills instalados globalmente para opencode (`~/.agents/skills/`): `ui-ux-pro-max`, `webapp-testing`, `find-skills`, `nextjs-developer`, `software-architecture`. `nextjs-developer` de `zenobi-us/dotfiles` ya no existe → se usó `jeffallan/claude-skills@nextjs-developer`. |
-| 2026-08-02 | Fase 6 (Panel admin) completada: layout con guard `requireAdmin`, dashboard con stats reales (pedidos, nuevos, productos, categorías, borradores + 5 recientes), CRUD productos (con `externalProductUrl`/`external_sku` obligatorios por regla de negocio, slug auto, categoría, activo/disponible), subida de imágenes a Supabase Storage (bucket `product-images`, Server Actions + `bodySizeLimit: 10mb` en `experimental`, `remotePatterns` para `**.supabase.co`), CRUD categorías, lista/detalle pedidos con filtro por estado y cambio de estado, enlace "Abrir en Herbalife" por línea con `externalProductUrl`, CRUD blog (draft/publish). Todo con Prisma + i18n (`es/en/pt`). Commit `16be889`. |
-| 2026-08-02 | Verificado admin con Playwright: login admin (usuario creado `admin@herba.com` con role admin vía Admin API), dashboard (5 stats), CRUD producto (crear/editar/borrar confirmado en DB), detalle pedido con enlaces Herbalife, cambio de estado `paid`→`processing` (revertido). 0 errores de consola. |
-| 2026-08-02 | Fix warning React 19 "getServerSnapshot should be cached": `getServerSnapshot` del carrito devuelve constante `EMPTY_CART`. Commit `37d1d6c`. |
-| 2026-08-02 | Fase 7 (Blog público) completada: listado `/blog` (solo publicados), detalle `/blog/[slug]` con `generateMetadata` (canonical + hreflang es/en/pt + OpenGraph) y JSON-LD BlogPosting, tarjeta `BlogCard` con imagen, teaser en home (3 últimas entradas), nav ya enlazaba `/blog`. Queries públicas en `lib/blog/queries.ts` vía Supabase con RLS (`published=true`). i18n `es/en/pt`. |
-| 2026-08-02 | Checkpoint con skills (seo, accessibility, webapp-testing): 6 páginas móvil 375px con 0 errores de consola; gaps SEO y a11y identificados. |
-| 2026-08-02 | Fase 8.1–8.2 (bloque SEO): `app/sitemap.ts` multi-locale (es/en/pt + x-default, productos publicados + posts publicados + estáticas), `app/robots.ts` (disallow admin/api/mi-cuenta/carrito/checkout/pago/login/registro en 4 variantes), JSON-LD Organization en layout + JSON-LD Product en detalle producto, `x-default` en layout/producto/blog (se corrigió el del blog que apuntaba a URL sin prefijo), skip link + `id="main"`, `:focus-visible` global y `prefers-reduced-motion`. Build + lint OK. |
-| 2026-08-02 | Fase 8.4–8.5 (legal ES + cookies): páginas `/legal`, `/privacidad`, `/cookies` con `components/legal/LegalPage.tsx` (contenido placeholder ES en `messages/*.json`, secciones por namespace), footer con enlaces reales (antes spans), banner `CookieConsent` cliente con localStorage (`cookie-consent`), botón aceptar + enlace a política, `role="dialog"`. Verificado con Playwright (banner → aceptar → persiste oculto; 3 páginas con h1; 0 errores de consola). |
-| 2026-08-02 | Fase 8.6–8.7 (pulido): formatos confirmados `Intl.NumberFormat es-ES` + EUR en `lib/format.ts`; aria-labels de nav localizados (`nav.mainNav`/`nav.mobileNav`); `aria-label` en inputs de checkout (a11y); `loading.tsx` (skeleton + sr-only) y `error.tsx` (client con `unstable_retry`, patrón v16.2) para `[locale]` y `admin`. Smoke test 6 páginas: 200, h1 único, 0 errores consola. |
-| 2026-08-02 | Fase 8.3–8.8 (CWV + docs): CWV móvil local con Playwright → home LCP 388ms/CLS 0, catálogo 412ms/0, blog 312ms/0 (baseline; PSI en producción tras Fase 9). AGENTS.md: regla i18n ampliada (todo string de UI, legal y estados en `messages/*.json`). **Fase 8 completada.** |
-| 2026-08-02 | Fase 9 (inicio): repo en GitHub y push `9136496..4e83b33` (9.1 [x]). Decisión: deploy primero con `*.vercel.app`; dominio propio (sin marca Herbalife) en fase posterior. Env vars confirmadas en código: `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `DATABASE_URL` (pooler), `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`. |
-| 2026-08-02 | Fase 9 (deploy): fix de build para Vercel — `lib/generated/prisma` estaba en `.gitignore` → añadido `postinstall: prisma generate`; `prisma.config.ts` con fallback de URL para `generate` sin env vars; `lib/db.ts` con Prisma lazy (Proxy) para no romper el build sin `DATABASE_URL` (falla solo en runtime). **9.2 [x] producción activa** en `https://herbalifeafiliados.vercel.app`. **9.3 [x]** env vars Production configuradas (7 vars: SITE_URL, Supabase x3, DATABASE_URL pooler, Stripe test x2). **9.4 [x]** webhook Stripe activo (evento `checkout.session.completed`) verificado end-to-end (pedido `8b27ad5d` → `paid`). Fix: teléfono y dirección obligatorios en checkout. |
-| 2026-08-02 | Fase 9.7 (CWV en producción): **PageSpeed Insights** home móvil → Perf **97**, Accesibilidad **100**, Prácticas **100**, SEO **91** (fix: texto del enlace de cookies "Más información" → "Ver política de cookies" en es/en/pt). Métricas: FCP 0,9s · LCP 2,3s · TBT 40ms · **CLS 0** · SI 3,8s. CrUX sin datos (sitio nuevo). Cross-check Playwright móvil: home LCP 3,4s frío / 712ms caliente, catálogo ~288ms, blog ~356ms, CLS 0. Queda de 9.7: legales reales, Stripe live, catálogo definitivo. |
+Historial completo de cambios, decisiones y trabajo completado → **`CHANGELOG.md`**.
 
 ---
 
@@ -459,8 +453,8 @@ Nunca commitear `.env.local`. Mantener `.env.example` actualizado.
 
 | # | Mejora | Estado |
 |---|--------|--------|
-| P1 | Auditoría visual móvil completa (screenshots 375px + smoke todas las páginas públicas) | [ ] |
-| P2 | `LocaleSwitcher` → menú desplegable de idioma (los 3 botones `ES/EN/PT` inline ocupan demasiado) | [ ] |
+| P1 | Auditoría visual móvil completa (screenshots 375px + smoke todas las páginas públicas). Hecho 2026-08-02: fix desbordamiento horizontal (header compacto, `0095305`); falta revisión admin y tablas | [ ] |
+| P2 | `LocaleSwitcher` → menú desplegable de idioma (los 3 botones `ES/EN/PT` inline ocupan demasiado). Ya compactado en móvil (`0095305`); falta el dropdown | [ ] |
 | P3 | Home: hero más cuidado, sección "cómo funciona"/garantías, FAQ | [ ] |
 | P4 | Catálogo: ordenación (precio/nombre), filtro por categoría en UI, búsqueda mejorada | [ ] |
 | P5 | Detalle producto: productos relacionados, nota de disponibilidad visible | [ ] |
