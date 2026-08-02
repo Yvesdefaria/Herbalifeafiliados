@@ -10,7 +10,7 @@ export async function SiteFooter() {
       <div className="mx-auto flex max-w-5xl flex-col gap-4 px-4 py-8 text-sm text-zinc-600 sm:px-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} Herbalife Afiliado. {t("rights")}
+            © {year} <span translate="no">Herbalife Afiliado</span>. {t("rights")}
           </p>
           <div className="flex flex-wrap gap-4">
             <Link href="/legal" className="transition hover:text-zinc-900">

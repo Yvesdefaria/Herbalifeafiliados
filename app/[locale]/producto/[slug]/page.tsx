@@ -6,6 +6,7 @@ import { getProductBySlug } from "@/lib/catalog/queries";
 import { formatPrice } from "@/lib/format";
 import { Link } from "@/i18n/navigation";
 import { AddToCartButton } from "@/components/catalog/AddToCartButton";
+import { getSiteUrl, localizedAlternates } from "@/lib/site";
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
@@ -13,30 +14,27 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
+  const t = await getTranslations({ locale, namespace: "catalog" });
   const product = await getProductBySlug(slug);
 
   if (!product) {
-    return { title: "Producto no encontrado" };
+    return { title: t("notFoundTitle") };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-  const languages = { es: "/es", en: "/en", pt: "/pt" } as const;
+  const siteUrl = getSiteUrl();
+  const restPath = `producto/${product.slug}`;
 
   return {
     title: product.name,
     description: product.description ?? undefined,
-    alternates: {
-      canonical: `${siteUrl}/${locale}/producto/${product.slug}`,
-      languages: {
-        ...Object.fromEntries(
-          Object.entries(languages).map(([lang, path]) => [
-            lang,
-            `${siteUrl}${path}/producto/${product.slug}`,
-          ]),
-        ),
-        "x-default": `${siteUrl}/es/producto/${product.slug}`,
-      },
+    openGraph: {
+      title: product.name,
+      description: product.description ?? undefined,
+      images: product.imageUrl ? [product.imageUrl] : undefined,
+      type: "website",
+      url: `${siteUrl}/${locale}/${restPath}`,
     },
+    alternates: localizedAlternates(locale, restPath),
   };
 }
 
@@ -51,18 +49,26 @@ export default async function ProductDetailPage({ params }: Props) {
     notFound();
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const siteUrl = getSiteUrl();
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.name,
     image: product.imageUrl ?? undefined,
     description: product.description ?? undefined,
+    sku: product.externalSku ?? undefined,
+    brand: {
+      "@type": "Brand",
+      name: "Herbalife",
+    },
     offers: {
       "@type": "Offer",
       price: (product.priceCents / 100).toFixed(2),
       priceCurrency: product.currency,
       url: `${siteUrl}/${locale}/producto/${product.slug}`,
+      availability: product.isAvailable
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
     },
   };
 
@@ -137,7 +143,7 @@ export default async function ProductDetailPage({ params }: Props) {
           ) : null}
 
           <p className="mt-3 text-2xl font-bold text-zinc-900">
-            {formatPrice(product.priceCents, product.currency)}
+            {formatPrice(product.priceCents, product.currency, locale)}
           </p>
 
           {product.description ? (

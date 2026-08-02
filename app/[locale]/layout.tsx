@@ -9,6 +9,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SessionMenu } from "@/components/auth/SessionMenu";
 import { CartProvider } from "@/lib/cart/CartContext";
 import { CookieConsent } from "@/components/legal/CookieConsent";
+import { getSiteUrl } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,7 +37,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "meta" });
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const siteUrl = getSiteUrl();
 
   return {
     title: {
@@ -66,7 +67,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   setRequestLocale(locale);
   const messages = await getMessages();
   const t = await getTranslations({ locale, namespace: "meta" });
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const siteUrl = getSiteUrl();
   const navT = await getTranslations("nav");
 
   const jsonLd = {

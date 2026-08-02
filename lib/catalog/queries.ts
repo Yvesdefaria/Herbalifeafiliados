@@ -1,5 +1,6 @@
 import "server-only";
 
+import { cache } from "react";
 import { createClient } from "@/lib/supabase/server";
 import type { Category, Product } from "./types";
 
@@ -84,7 +85,9 @@ export async function getProducts({
   return (data as ProductRow[]).map(mapProduct);
 }
 
-export async function getProductBySlug(slug: string): Promise<Product | null> {
+export const getProductBySlug = cache(async function getProductBySlug(
+  slug: string,
+): Promise<Product | null> {
   const supabase = await createClient();
 
   const { data, error } = await supabase
@@ -100,7 +103,7 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
   }
 
   return data ? mapProduct(data as ProductRow) : null;
-}
+});
 
 export async function getCategories(): Promise<Category[]> {
   const supabase = await createClient();

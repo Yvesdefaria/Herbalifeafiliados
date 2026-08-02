@@ -1,5 +1,6 @@
 import "server-only";
 
+import { cache } from "react";
 import { createClient } from "@/lib/supabase/server";
 
 export type BlogPostSummary = {
@@ -71,7 +72,9 @@ export async function getPublishedPosts(limit?: number): Promise<BlogPostSummary
   return (data as Partial<PostRow>[]).map(mapSummary);
 }
 
-export async function getPublishedPostBySlug(slug: string): Promise<BlogPost | null> {
+export const getPublishedPostBySlug = cache(async function getPublishedPostBySlug(
+  slug: string,
+): Promise<BlogPost | null> {
   const supabase = await createClient();
 
   const { data, error } = await supabase
@@ -87,7 +90,7 @@ export async function getPublishedPostBySlug(slug: string): Promise<BlogPost | n
   }
 
   return data ? mapPost(data as PostRow) : null;
-}
+});
 
 export async function getLatestPosts(limit = 3): Promise<BlogPostSummary[]> {
   return getPublishedPosts(limit);

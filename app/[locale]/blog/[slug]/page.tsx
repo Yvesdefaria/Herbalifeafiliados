@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getPublishedPostBySlug } from "@/lib/blog/queries";
 import { Link } from "@/i18n/navigation";
+import { getSiteUrl, localizedAlternates } from "@/lib/site";
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
@@ -11,26 +12,14 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
+  const t = await getTranslations({ locale, namespace: "blog" });
   const post = await getPublishedPostBySlug(slug);
 
   if (!post) {
-    return { title: "Entrada no encontrada" };
+    return { title: t("notFoundTitle") };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-  const languages = { es: "/es", en: "/en", pt: "/pt" } as const;
-  const alternates: Metadata["alternates"] = {
-    canonical: `${siteUrl}/${locale}/blog/${post.slug}`,
-    languages: {
-      ...Object.fromEntries(
-        Object.entries(languages).map(([lang, path]) => [
-          lang,
-          `${siteUrl}${path}/blog/${post.slug}`,
-        ]),
-      ),
-      "x-default": `${siteUrl}/es/blog/${post.slug}`,
-    },
-  };
+  const restPath = `blog/${post.slug}`;
 
   return {
     title: post.title,
@@ -42,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       publishedTime: post.publishedAt ?? undefined,
     },
-    alternates,
+    alternates: localizedAlternates(locale, restPath),
   };
 }
 
@@ -56,7 +45,7 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const siteUrl = getSiteUrl();
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -64,6 +53,14 @@ export default async function BlogPostPage({ params }: Props) {
     description: post.excerpt ?? undefined,
     image: post.imageUrl ?? undefined,
     datePublished: post.publishedAt ?? undefined,
+    author: {
+      "@type": "Person",
+      name: "Miembro Independiente de Herbalife",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Herbalife Afiliado",
+    },
     url: `${siteUrl}/${locale}/blog/${post.slug}`,
     inLanguage: locale,
   };

@@ -71,39 +71,47 @@ export function CheckoutForm() {
         <div className="mt-4 grid gap-3">
           <input
             type="text"
+            name="name"
+            autoComplete="name"
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder={t("name")}
             aria-label={t("name")}
-            className="h-11 w-full rounded-xl border border-zinc-200 bg-white px-4 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-emerald-600 focus:outline-none"
+            className="h-11 w-full rounded-xl border border-zinc-200 bg-white px-4 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600/40"
           />
           <input
             type="email"
+            name="email"
+            autoComplete="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={t("email")}
             aria-label={t("email")}
-            className="h-11 w-full rounded-xl border border-zinc-200 bg-white px-4 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-emerald-600 focus:outline-none"
+            className="h-11 w-full rounded-xl border border-zinc-200 bg-white px-4 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600/40"
           />
           <input
             type="tel"
+            name="phone"
+            autoComplete="tel"
             required
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             placeholder={t("phone")}
             aria-label={t("phone")}
-            className="h-11 w-full rounded-xl border border-zinc-200 bg-white px-4 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-emerald-600 focus:outline-none"
+            className="h-11 w-full rounded-xl border border-zinc-200 bg-white px-4 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600/40"
           />
           <textarea
+            name="address"
+            autoComplete="street-address"
             required
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             placeholder={t("address")}
             aria-label={t("address")}
             rows={3}
-            className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-emerald-600 focus:outline-none"
+            className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600/40"
           />
         </div>
       </section>
@@ -128,24 +136,27 @@ export function CheckoutForm() {
                 <p className="truncate text-sm font-medium text-zinc-900">
                   {item.name}
                 </p>
-                <p className="text-xs text-zinc-500">
-                  {item.quantity} × {formatPrice(item.priceCents, item.currency)}
+                <p className="text-xs tabular-nums text-zinc-500">
+                  {item.quantity} × {formatPrice(item.priceCents, item.currency, locale)}
                 </p>
               </div>
-              <p className="text-sm font-semibold text-zinc-900">
-                {formatPrice(item.priceCents * item.quantity, item.currency)}
+              <p className="text-sm font-semibold tabular-nums text-zinc-900">
+                {formatPrice(item.priceCents * item.quantity, item.currency, locale)}
               </p>
             </li>
           ))}
         </ul>
         <div className="mt-4 flex items-center justify-between border-t border-zinc-100 pt-4">
           <p className="text-sm font-medium text-zinc-600">{t("total")}</p>
-          <p className="text-lg font-bold text-zinc-900">{formatPrice(totalCents)}</p>
+          <p className="text-lg font-bold tabular-nums text-zinc-900">{formatPrice(totalCents, "EUR", locale)}</p>
         </div>
       </section>
 
       {error ? (
-        <p className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">
+        <p
+          role="alert"
+          className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700"
+        >
           {t("error")}
         </p>
       ) : null}

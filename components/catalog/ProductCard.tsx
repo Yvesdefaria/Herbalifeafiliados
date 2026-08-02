@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { formatPrice } from "@/lib/format";
 import type { Product } from "@/lib/catalog/types";
@@ -10,6 +10,7 @@ type Props = {
 
 export async function ProductCard({ product }: Props) {
   const t = await getTranslations("catalog");
+  const locale = await getLocale();
 
   return (
     <Link
@@ -54,8 +55,8 @@ export async function ProductCard({ product }: Props) {
         <h2 className="line-clamp-2 text-sm font-semibold text-zinc-900">
           {product.name}
         </h2>
-        <p className="mt-auto pt-2 text-base font-bold text-zinc-900">
-          {formatPrice(product.priceCents, product.currency)}
+        <p className="mt-auto pt-2 text-base font-bold tabular-nums text-zinc-900">
+          {formatPrice(product.priceCents, product.currency, locale)}
         </p>
       </div>
     </Link>

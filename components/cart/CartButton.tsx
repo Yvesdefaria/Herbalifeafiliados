@@ -30,7 +30,10 @@ export function CartButton() {
       </svg>
       <span className="ml-2 hidden sm:inline">{t("cart")}</span>
       {totalItems > 0 ? (
-        <span className="absolute -right-1.5 -top-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-white px-1 text-xs font-bold text-emerald-700">
+        <span
+          aria-live="polite"
+          className="absolute -right-1.5 -top-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-white px-1 text-xs font-bold text-emerald-700"
+        >
           {totalItems}
         </span>
       ) : null}

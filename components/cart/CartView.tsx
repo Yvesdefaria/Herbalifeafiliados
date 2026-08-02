@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useCart } from "@/lib/cart/CartContext";
 import { formatPrice } from "@/lib/format";
 import { Link } from "@/i18n/navigation";
 
 export function CartView() {
   const t = useTranslations("cart");
+  const locale = useLocale();
   const { items, totalCents, setQuantity, removeItem } = useCart();
 
   if (items.length === 0) {
@@ -54,8 +55,8 @@ export function CartView() {
               >
                 {item.name}
               </Link>
-              <p className="mt-1 text-sm font-medium text-zinc-900">
-                {formatPrice(item.priceCents, item.currency)}
+              <p className="mt-1 text-sm font-medium tabular-nums text-zinc-900">
+                {formatPrice(item.priceCents, item.currency, locale)}
               </p>
               <div className="mt-auto flex items-center justify-between gap-2 pt-2">
                 <div className="flex h-9 items-center rounded-lg border border-zinc-200">
@@ -95,8 +96,8 @@ export function CartView() {
       <div className="rounded-2xl border border-zinc-200 bg-white p-4">
         <div className="flex items-center justify-between">
           <p className="text-sm font-medium text-zinc-600">{t("total")}</p>
-          <p className="text-lg font-bold text-zinc-900">
-            {formatPrice(totalCents)}
+          <p aria-live="polite" className="text-lg font-bold tabular-nums text-zinc-900">
+            {formatPrice(totalCents, "EUR", locale)}
           </p>
         </div>
         <Link

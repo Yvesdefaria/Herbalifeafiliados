@@ -27,6 +27,7 @@ export function AddToCartButton({ product, disabled, className }: Props) {
       type="button"
       onClick={handleAdd}
       disabled={disabled}
+      aria-live="polite"
       className={
         className ??
         "inline-flex h-12 items-center justify-center rounded-xl bg-emerald-700 px-5 text-sm font-medium text-white transition hover:bg-emerald-800 disabled:opacity-70"

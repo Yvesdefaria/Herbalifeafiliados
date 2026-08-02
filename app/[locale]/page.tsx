@@ -4,10 +4,28 @@ import { getFeaturedProducts } from "@/lib/catalog/queries";
 import { getLatestPosts } from "@/lib/blog/queries";
 import { ProductCard } from "@/components/catalog/ProductCard";
 import { BlogCard } from "@/components/blog/BlogCard";
+import { localizedAlternates } from "@/lib/site";
+import type { Metadata } from "next";
 
 type Props = {
   params: Promise<{ locale: string }>;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta" });
+  const tHome = await getTranslations({ locale, namespace: "home" });
+
+  return {
+    description: t("description"),
+    openGraph: {
+      title: tHome("title"),
+      description: t("description"),
+      type: "website",
+    },
+    alternates: localizedAlternates(locale, ""),
+  };
+}
 
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;

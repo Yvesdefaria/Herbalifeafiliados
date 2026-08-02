@@ -25,6 +25,7 @@ export function SiteHeader({ sessionMenu }: Props) {
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-3 px-4 sm:h-16 sm:px-6">
         <Link
           href="/"
+          translate="no"
           className="min-w-0 truncate text-sm font-semibold tracking-tight text-emerald-800 sm:text-base"
         >
           Herbalife Afiliado

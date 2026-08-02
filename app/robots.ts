@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
+import { getSiteUrl } from "@/lib/site";
 
 const PRIVATE_PATH_PREFIXES = ["admin", "api", "mi-cuenta", "carrito", "checkout", "pago", "login", "registro"];
 
 export default function robots(): MetadataRoute.Robots {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const siteUrl = getSiteUrl();
 
   const disallow = PRIVATE_PATH_PREFIXES.flatMap((prefix) => [
     `/${prefix}/`,

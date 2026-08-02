@@ -1,17 +1,25 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { BlogCard } from "@/components/blog/BlogCard";
 import { getPublishedPosts } from "@/lib/blog/queries";
+import { localizedAlternates } from "@/lib/site";
+import type { Metadata } from "next";
 
 type Props = {
   params: Promise<{ locale: string }>;
 };
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "blog" });
   return {
     title: t("title"),
     description: t("subtitle"),
+    openGraph: {
+      title: t("title"),
+      description: t("subtitle"),
+      type: "website",
+    },
+    alternates: localizedAlternates(locale, "blog"),
   };
 }
 

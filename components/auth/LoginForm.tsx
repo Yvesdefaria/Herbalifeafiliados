@@ -12,7 +12,7 @@ export function LoginForm() {
   return (
     <form action={action} className="flex flex-col gap-4">
       {state?.error ? (
-        <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
+        <p role="alert" className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
           {state.error}
         </p>
       ) : null}
@@ -27,7 +27,7 @@ export function LoginForm() {
           type="email"
           required
           autoComplete="email"
-          className="h-11 rounded-lg border border-zinc-300 bg-white px-3 text-sm text-zinc-900 focus:border-emerald-700 focus:outline-none"
+          className="h-11 rounded-lg border border-zinc-300 bg-white px-3 text-sm text-zinc-900 focus:border-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700/40"
         />
       </div>
 
@@ -44,7 +44,7 @@ export function LoginForm() {
           type="password"
           required
           autoComplete="current-password"
-          className="h-11 rounded-lg border border-zinc-300 bg-white px-3 text-sm text-zinc-900 focus:border-emerald-700 focus:outline-none"
+          className="h-11 rounded-lg border border-zinc-300 bg-white px-3 text-sm text-zinc-900 focus:border-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700/40"
         />
       </div>
 

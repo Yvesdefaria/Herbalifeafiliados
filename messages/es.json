@@ -23,7 +23,7 @@
     "email": "Email",
     "password": "Contraseña",
     "name": "Nombre",
-    "submitting": "Procesando...",
+    "submitting": "Procesando…",
     "welcomeBack": "Accede con tu cuenta para continuar.",
     "noAccount": "¿No tienes cuenta?",
     "hasAccount": "¿Ya tienes cuenta?",
@@ -105,7 +105,7 @@
     "edit": "Editar",
     "delete": "Eliminar",
     "save": "Guardar",
-    "saving": "Guardando...",
+    "saving": "Guardando…",
     "cancel": "Cancelar",
     "back": "Volver",
     "confirmDelete": "¿Seguro que quieres eliminar?",
@@ -123,8 +123,9 @@
   },
   "catalog": {
     "title": "Productos",
+    "subtitle": "Productos de nutrición y bienestar Herbalife.",
     "search": "Buscar",
-    "searchPlaceholder": "Buscar producto...",
+    "searchPlaceholder": "Buscar producto…",
     "categories": "Categorías",
     "all": "Todos",
     "resultsCount": "{count, plural, one {# producto} other {# productos}}",
@@ -132,11 +133,12 @@
     "soldOut": "Agotado",
     "backToProducts": "Volver a productos",
     "addToCart": "Añadir al carrito",
-    "added": "Añadido"
+    "added": "Añadido",
+    "notFoundTitle": "Producto no encontrado"
   },
   "cart": {
     "title": "Carrito",
-    "loading": "Cargando...",
+    "loading": "Cargando…",
     "empty": "Tu carrito está vacío.",
     "browse": "Ver productos",
     "total": "Total",
@@ -151,7 +153,7 @@
     "items": "{count, plural, one {# artículo} other {# artículos}}",
     "total": "Total",
     "submit": "Pagar con tarjeta",
-    "submitting": "Redirigiendo al pago...",
+    "submitting": "Redirigiendo al pago…",
     "empty": "No hay artículos que tramitar.",
     "browse": "Ver productos",
     "note": "El pago se gestiona de forma segura a través de Stripe. Tras confirmarlo, recibirás un correo con los detalles del pedido.",
@@ -190,7 +192,8 @@
     "subtitle": "Consejos, recetas e información sobre bienestar.",
     "empty": "Aún no hay artículos publicados.",
     "readMore": "Leer más",
-    "backToBlog": "Volver al blog"
+    "backToBlog": "Volver al blog",
+    "notFoundTitle": "Entrada no encontrada"
   },
   "footer": {
     "rights": "Todos los derechos reservados.",
@@ -271,7 +274,7 @@
     "moreInfo": "Ver política de cookies"
   },
   "loading": {
-    "loading": "Cargando..."
+    "loading": "Cargando…"
   },
   "error": {
     "title": "Algo salió mal",
@@ -283,5 +286,10 @@
     "es": "Español",
     "en": "English",
     "pt": "Português"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "message": "La página que buscas no existe o ha sido movida.",
+    "backHome": "Volver al inicio"
   }
 }

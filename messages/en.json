@@ -23,7 +23,7 @@
     "email": "Email",
     "password": "Password",
     "name": "Name",
-    "submitting": "Processing...",
+    "submitting": "Processing…",
     "welcomeBack": "Sign in to your account to continue.",
     "noAccount": "Don't have an account?",
     "hasAccount": "Already have an account?",
@@ -105,7 +105,7 @@
     "edit": "Editar",
     "delete": "Eliminar",
     "save": "Guardar",
-    "saving": "Guardando...",
+    "saving": "Guardando…",
     "cancel": "Cancelar",
     "back": "Volver",
     "confirmDelete": "¿Seguro que quieres eliminar?",
@@ -123,8 +123,9 @@
   },
   "catalog": {
     "title": "Products",
+    "subtitle": "Herbalife nutrition and wellness products.",
     "search": "Search",
-    "searchPlaceholder": "Search products...",
+    "searchPlaceholder": "Search products…",
     "categories": "Categories",
     "all": "All",
     "resultsCount": "{count, plural, one {# product} other {# products}}",
@@ -132,11 +133,12 @@
     "soldOut": "Sold out",
     "backToProducts": "Back to products",
     "addToCart": "Add to cart",
-    "added": "Added"
+    "added": "Added",
+    "notFoundTitle": "Product not found"
   },
   "cart": {
     "title": "Cart",
-    "loading": "Loading...",
+    "loading": "Loading…",
     "empty": "Your cart is empty.",
     "browse": "View products",
     "total": "Total",
@@ -151,7 +153,7 @@
     "items": "{count, plural, one {# item} other {# items}}",
     "total": "Total",
     "submit": "Pay with card",
-    "submitting": "Redirecting to payment...",
+    "submitting": "Redirecting to payment…",
     "empty": "There are no items to checkout.",
     "browse": "View products",
     "note": "Payment is securely handled by Stripe. After confirming, you will receive an email with the order details.",
@@ -190,7 +192,8 @@
     "subtitle": "Tips, recipes and wellness information.",
     "empty": "No posts published yet.",
     "readMore": "Read more",
-    "backToBlog": "Back to blog"
+    "backToBlog": "Back to blog",
+    "notFoundTitle": "Post not found"
   },
   "footer": {
     "rights": "All rights reserved.",
@@ -271,7 +274,7 @@
     "moreInfo": "View cookies policy"
   },
   "loading": {
-    "loading": "Loading..."
+    "loading": "Loading…"
   },
   "error": {
     "title": "Something went wrong",
@@ -283,5 +286,10 @@
     "es": "Español",
     "en": "English",
     "pt": "Português"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "message": "The page you are looking for does not exist or has been moved.",
+    "backHome": "Back to home"
   }
 }
