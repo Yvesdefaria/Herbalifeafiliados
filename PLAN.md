@@ -470,4 +470,60 @@ Nunca commitear `.env.local`. Mantener `.env.example` actualizado.
 | P9 | Re-medir PSI tras `inlineCss` (verificar SEO 100 y LCP) | [ ] |
 | P10 | i18n completo `en`/`pt` + contenido traducido + slugs localizados (F1/F2/F3/F7) | [ ] |
 
+---
+
+## 13. Referencia: herbalspain.com (análisis de features candidatas)
+
+> Referencia aportada por Yves (2026-08-02). E-commerce de un Miembro Independiente Herbalife (PrestaShop). **La web no está optimizada** (PrestaShop antiguo) → sirve de referencia de contenido y modelo de negocio, no de diseño ni rendimiento. Marcas `[x]` las que queramos adoptar.
+
+### Nota estratégica (importante)
+
+herbalspain.com **no cobra online**: el botón de compra redirige a la plataforma oficial **HerbalifeOne** con un **código de descuento (PROMO, 35%)** y un botón "PEDIR POR WHATSAPP" para guiar al cliente. Nuestro modelo actual es distinto: **checkout propio con Stripe** + pedido en nuestra DB + fulfillment manual por el afiliado. → Decidir si mantemos Stripe o exploramos el modelo "redirigir a HerbalifeOne con código" (afecta checkout, pago, legal y webhook).
+
+### Features observadas (verificado [v]) y a adoptar [¿?]
+
+#### Home
+| Feature | v | ¿Adoptar? |
+|---------|----|----|
+| Slider de heroes con producto + CTA ("Pruébalo ahora") | [x] | [ ] |
+| Productos destacados con **precio rebajado** (PVP tachado + precio oferta) | [x] | [ ] |
+| Badge "Precio rebajado" en tarjetas | [x] | [ ] |
+| Nº de opiniones en tarjetas | [x] | [ ] |
+
+#### Header / navegación
+| Feature | v | ¿Adoptar? |
+|---------|----|----|
+| Menú con categorías + **subcategorías desplegables** (p.ej. Control de peso → 11) | [x] | [ ] |
+| **Buscador** (icono + overlay) | [x] | [ ] |
+| Enlace a historial de pedidos | [x] | [ ] |
+
+#### Página de producto
+| Feature | v | ¿Adoptar? |
+|---------|----|----|
+| Breadcrumb (Inicio > Categoría > Producto) | [x] | [ ] |
+| **Galería de imágenes** del producto | [x] | [ ] |
+| Precio "Antes X €" tachado + precio actual | [x] | [ ] |
+| Selector de cantidad | [x] | [ ] |
+| **Descuentos por volumen** (tabla precio/ud) | [x] | [ ] |
+| Bloque "Compra oficial con descuento" → HerbalifeOne + código + WhatsApp | [x] | [ ] |
+| Bullets de especificaciones (sabores, raciones, peso) | [x] | [ ] |
+| Compartir en redes | [x] | [ ] |
+| **Tabs**: Descripción / Detalles / Preguntas frecuentes / Opiniones | [x] | [ ] |
+| Descripción larga con secciones (beneficios, cómo tomar, intolerancias lactosa/gluten/soja, vegano) | [x] | [ ] |
+| **Ficha técnica** (referencia, gluten, lactosa, apto vegano) | [x] | [ ] |
+| Formulario de consulta por producto | [x] | [ ] |
+| **Opiniones** (rating 4.8/5, lista, votos "¿útil?") — en nuestra web no hay reviews | [x] | [ ] |
+| "También podría interesarle" (**cross-sell** / relacionados) | [x] | [ ] |
+
+#### Confianza / conversión
+| Feature | v | ¿Adoptar? |
+|---------|----|----|
+| **Widget WhatsApp** de atención | [x] | [ ] |
+| Página "Ventajas de comprar" | [x] | [ ] |
+| "Análisis nutricional gratuito" / **calculadora de IMC** | [x] | [ ] |
+| "Descuentos VIP" | [x] | [ ] |
+| Páginas Envíos / Devoluciones / Pago seguro | [x] | [ ] |
+| Footer con info de tienda (dirección, teléfono, email) | [x] | [ ] |
+| Disclaimer "Miembro Independiente Herbalife" en footer | [x] | [ ] |
+
 
