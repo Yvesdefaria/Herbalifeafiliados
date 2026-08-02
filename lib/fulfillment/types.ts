@@ -13,7 +13,7 @@ export type FulfillmentOrder = {
   customerEmail: string;
   customerPhone?: string | null;
   shippingAddress?: string | null;
-  currency: "EUR";
+  currency: string;
   totalCents: number;
   items: FulfillmentOrderItem[];
   notes?: string | null;

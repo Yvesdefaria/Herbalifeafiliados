@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
 import { prisma } from "@/lib/db";
+import { getSiteUrl } from "@/lib/site";
 import type { CartItem } from "@/lib/cart/types";
 
 type CheckoutRequest = {
@@ -117,19 +118,41 @@ export async function POST(req: Request) {
     },
   });
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const siteUrl = getSiteUrl();
   const locale =
     body.locale === "en" || body.locale === "pt" ? body.locale : "es";
 
   const stripe = getStripe();
-  const session = await stripe.checkout.sessions.create({
-    mode: "payment",
-    customer_email: email,
-    line_items: lineItems,
-    metadata: { order_id: order.id },
-    success_url: `${siteUrl}/${locale}/pago/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${siteUrl}/${locale}/pago/cancel`,
-  });
+  let sessionUrl: string | null;
+  try {
+    const session = await stripe.checkout.sessions.create({
+      mode: "payment",
+      customer_email: email,
+      line_items: lineItems,
+      metadata: { order_id: order.id },
+      success_url: `${siteUrl}/${locale}/pago/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${siteUrl}/${locale}/pago/cancel`,
+    });
+    sessionUrl = session.url;
+  } catch {
+    await prisma.orders
+      .delete({ where: { id: order.id } })
+      .catch(() => undefined);
+    return NextResponse.json(
+      { error: "no se pudo iniciar el pago" },
+      { status: 500 },
+    );
+  }
 
-  return NextResponse.json({ url: session.url });
+  if (!sessionUrl) {
+    await prisma.orders
+      .delete({ where: { id: order.id } })
+      .catch(() => undefined);
+    return NextResponse.json(
+      { error: "no se pudo iniciar el pago" },
+      { status: 500 },
+    );
+  }
+
+  return NextResponse.json({ url: sessionUrl });
 }

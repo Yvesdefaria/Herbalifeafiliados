@@ -28,11 +28,19 @@ export async function POST(req: Request) {
     const session = event.data.object as Stripe.Checkout.Session;
     const orderId = session.metadata?.order_id;
 
-    if (orderId) {
-      await prisma.orders.update({
-        where: { id: orderId },
+    if (!orderId || session.payment_status !== "paid") {
+      return NextResponse.json({ received: true });
+    }
+
+    try {
+      const updated = await prisma.orders.updateMany({
+        where: { id: orderId, status: { not: "paid" } },
         data: { status: "paid" },
       });
+
+      if (updated.count === 0) {
+        return NextResponse.json({ received: true });
+      }
 
       const order = await prisma.orders.findUnique({
         where: { id: orderId },
@@ -46,7 +54,7 @@ export async function POST(req: Request) {
           customerEmail: order.customer_email,
           customerPhone: order.customer_phone,
           shippingAddress: order.shipping_address,
-          currency: "EUR",
+          currency: order.currency,
           totalCents: order.total_cents,
           items: order.order_items.map((item) => ({
             productId: item.product_id ?? "",
@@ -58,6 +66,11 @@ export async function POST(req: Request) {
           })),
         });
       }
+    } catch {
+      return NextResponse.json(
+        { error: "error procesando webhook" },
+        { status: 500 },
+      );
     }
   }
 
