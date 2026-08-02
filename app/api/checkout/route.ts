@@ -26,10 +26,10 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "carrito vacío" }, { status: 400 });
   }
 
-  const { name, email } = body.customer ?? {};
-  if (!name || !email) {
+  const { name, email, phone, address } = body.customer ?? {};
+  if (!name || !email || !phone || !address) {
     return NextResponse.json(
-      { error: "nombre y email requeridos" },
+      { error: "nombre, email, teléfono y dirección requeridos" },
       { status: 400 },
     );
   }

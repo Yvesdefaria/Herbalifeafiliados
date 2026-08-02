@@ -89,6 +89,7 @@ export function CheckoutForm() {
           />
           <input
             type="tel"
+            required
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             placeholder={t("phone")}
@@ -96,6 +97,7 @@ export function CheckoutForm() {
             className="h-11 w-full rounded-xl border border-zinc-200 bg-white px-4 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-emerald-600 focus:outline-none"
           />
           <textarea
+            required
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             placeholder={t("address")}
