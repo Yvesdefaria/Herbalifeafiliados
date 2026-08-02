@@ -178,7 +178,16 @@
     "ctaBlog": "Leer blog",
     "comingSoon": "Pronto: catálogo, carrito y checkout.",
     "featured": "Destacados",
-    "seeAll": "Ver todos"
+    "seeAll": "Ver todos",
+    "latestPosts": "Últimas entradas",
+    "viewAllPosts": "Ver todas"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Consejos, recetas e información sobre bienestar.",
+    "empty": "Aún no hay artículos publicados.",
+    "readMore": "Leer más",
+    "backToBlog": "Volver al blog"
   },
   "footer": {
     "rights": "Todos los derechos reservados.",

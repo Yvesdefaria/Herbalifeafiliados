@@ -2,7 +2,7 @@
 
 > Documento vivo. Marca checkboxes al completar. Tolera cambios de alcance.
 
-**Estado:** Fases 0–6 completadas y verificadas (pago Stripe test end-to-end OK; panel admin funcional) · **Siguiente paso:** Fase 7 (Blog público)
+**Estado:** Fases 0–7 completadas y verificadas (pago Stripe test end-to-end OK; panel admin funcional; blog público live) · **Siguiente paso:** Fase 8 (SEO + legal ES + pulido)
 
 ---
 
@@ -305,9 +305,9 @@ En MVP: textos de producto/blog en español en la tabla principal. Migrar a trad
 
 | # | Subtarea | Estado |
 |---|----------|--------|
-| 7.1 | `/[locale]/blog` listado | [ ] |
-| 7.2 | `/[locale]/blog/[slug]` detalle + SEO | [ ] |
-| 7.3 | Enlace en nav + teaser en home | [ ] |
+| 7.1 | `/[locale]/blog` listado | [x] |
+| 7.2 | `/[locale]/blog/[slug]` detalle + SEO | [x] |
+| 7.3 | Enlace en nav + teaser en home | [x] |
 
 **Checkpoint:** leer posts publicados sin login.
 
@@ -435,3 +435,8 @@ Nunca commitear `.env.local`. Mantener `.env.example` actualizado.
 | 2026-08-01 | Fix `proxy.ts`: excluir `/api` del matcher de next-intl (el proxy reescribía `/api/checkout` → `/es/api/checkout` → 404). Commit `97c7818`. |
 | 2026-08-01 | Skills instalados globalmente para opencode (`~/.agents/skills/`): `ui-ux-pro-max`, `webapp-testing`, `find-skills`, `nextjs-developer`, `software-architecture`. `nextjs-developer` de `zenobi-us/dotfiles` ya no existe → se usó `jeffallan/claude-skills@nextjs-developer`. |
 | 2026-08-02 | Fase 6 (Panel admin) completada: layout con guard `requireAdmin`, dashboard con stats reales (pedidos, nuevos, productos, categorías, borradores + 5 recientes), CRUD productos (con `externalProductUrl`/`external_sku` obligatorios por regla de negocio, slug auto, categoría, activo/disponible), subida de imágenes a Supabase Storage (bucket `product-images`, Server Actions + `bodySizeLimit: 10mb` en `experimental`, `remotePatterns` para `**.supabase.co`), CRUD categorías, lista/detalle pedidos con filtro por estado y cambio de estado, enlace "Abrir en Herbalife" por línea con `externalProductUrl`, CRUD blog (draft/publish). Todo con Prisma + i18n (`es/en/pt`). Commit `16be889`. |
+| 2026-08-02 | Verificado admin con Playwright: login admin (usuario creado `admin@herba.com` con role admin vía Admin API), dashboard (5 stats), CRUD producto (crear/editar/borrar confirmado en DB), detalle pedido con enlaces Herbalife, cambio de estado `paid`→`processing` (revertido). 0 errores de consola. |
+| 2026-08-02 | Fix warning React 19 "getServerSnapshot should be cached": `getServerSnapshot` del carrito devuelve constante `EMPTY_CART`. Commit `37d1d6c`. |
+| 2026-08-02 | Fase 7 (Blog público) completada: listado `/blog` (solo publicados), detalle `/blog/[slug]` con `generateMetadata` (canonical + hreflang es/en/pt + OpenGraph) y JSON-LD BlogPosting, tarjeta `BlogCard` con imagen, teaser en home (3 últimas entradas), nav ya enlazaba `/blog`. Queries públicas en `lib/blog/queries.ts` vía Supabase con RLS (`published=true`). i18n `es/en/pt`. |
+
+

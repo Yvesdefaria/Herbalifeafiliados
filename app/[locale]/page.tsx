@@ -1,7 +1,9 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getFeaturedProducts } from "@/lib/catalog/queries";
+import { getLatestPosts } from "@/lib/blog/queries";
 import { ProductCard } from "@/components/catalog/ProductCard";
+import { BlogCard } from "@/components/blog/BlogCard";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -12,7 +14,10 @@ export default async function HomePage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations("home");
 
-  const featured = await getFeaturedProducts(4);
+  const [featured, latestPosts] = await Promise.all([
+    getFeaturedProducts(4),
+    getLatestPosts(3),
+  ]);
 
   return (
     <div className="flex flex-1 flex-col">
@@ -59,6 +64,29 @@ export default async function HomePage({ params }: Props) {
             {featured.map((product) => (
               <li key={product.id}>
                 <ProductCard product={product} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {latestPosts.length > 0 ? (
+        <section className="mx-auto w-full max-w-5xl px-4 pb-12 sm:px-6">
+          <div className="flex items-center justify-between gap-4">
+            <h2 className="text-lg font-semibold text-zinc-900">
+              {t("latestPosts")}
+            </h2>
+            <Link
+              href="/blog"
+              className="shrink-0 text-sm font-medium text-emerald-700 hover:text-emerald-800"
+            >
+              {t("viewAllPosts")}
+            </Link>
+          </div>
+          <ul className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {latestPosts.map((post) => (
+              <li key={post.id}>
+                <BlogCard post={post} />
               </li>
             ))}
           </ul>
